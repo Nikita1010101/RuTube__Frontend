@@ -1,0 +1,37 @@
+.sidebarItem {
+	&.active {
+		div {
+			@apply opacity-100;
+			background: #ff7551;
+		}
+		h2 {
+			@apply text-white;
+      font {
+        @apply text-white;
+      }
+		}
+	}
+	@apply w-4/5 my-2 mx-5 p-2.5 flex items-center rounded-xl cursor-pointer;
+	transition: all 200ms ease-in-out;
+	&:hover {
+		@apply bg-gray-700;
+	}
+	&:active {
+		@apply bg-gray-800;
+	}
+	div {
+		@apply mr-4 w-8 h-8 rounded-xl flex justify-center items-center bg-gray-500 opacity-50;
+		img {
+			filter: invert(1);
+			background: none;
+		}
+	}
+	h2 {
+		@apply text-gray-400 text-base font-medium;
+		transition: all 200ms ease-in-out;
+		font {
+			@apply text-gray-400 text-base font-medium;
+			transition: all 200ms ease-in-out;
+		}
+	}
+}

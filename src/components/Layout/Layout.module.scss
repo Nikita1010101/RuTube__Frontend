@@ -1,0 +1,4 @@
+.home {
+  @apply h-screen pt-24 grid;
+  grid-template-columns: 1fr 4fr;
+}

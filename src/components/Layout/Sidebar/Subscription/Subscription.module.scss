@@ -1,0 +1,28 @@
+.subscription {
+	&.active {
+		div {
+			@apply opacity-100;
+			background: #ff7551;
+		}
+		h2 {
+			@apply text-white;
+		}
+	}
+	@apply w-4/5 my-2 mx-5 p-2.5 flex items-center rounded-xl cursor-pointer;
+	transition: all 200ms ease-in-out;
+	&:hover {
+		@apply bg-gray-700;
+	}
+	&:active {
+		@apply bg-gray-800;
+	}
+	h2 {
+		@apply mx-4 text-sm text-gray-500 font-bold overflow-hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		font {
+			@apply text-sm text-gray-500 font-bold;
+		}
+	}
+}

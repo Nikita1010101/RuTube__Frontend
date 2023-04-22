@@ -1,0 +1,21 @@
+.sidebar {
+	@apply mt-2;
+	h3 {
+		@apply mx-9 mb-4 text-lg text-gray-500 font-bold;
+		font {
+			@apply text-lg text-gray-500 font-bold;
+		}
+	}
+	hr {
+		@apply w-2/3 mt-7 mb-5 ml-8 opacity-20;
+	}
+	> h2 {
+		@apply mx-9 mb-5 text-gray-500 font-semibold;
+		font {
+			@apply text-gray-500 font-semibold;
+		}
+	}
+	h4 {
+		@apply w-2/3 mt-8 ml-10 text-xs mb-10 opacity-20;
+	}
+}

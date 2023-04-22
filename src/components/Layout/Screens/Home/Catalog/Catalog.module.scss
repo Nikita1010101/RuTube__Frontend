@@ -1,0 +1,13 @@
+.catalog {
+  @apply mb-10 mx-7;
+  > h1 {
+    @apply mb-7 text-2xl font-semibold;
+  }
+  .content {
+    @apply grid;
+    grid-template-columns: repeat(4, 23.8%);
+    justify-content: space-between;
+    justify-items: center;
+    row-gap: 1.5em;
+  }
+}

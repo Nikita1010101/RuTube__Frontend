@@ -1,0 +1,50 @@
+.myChannel {
+	.wrapper {
+		@apply mb-3 mx-7 h-14 flex justify-between items-center;
+		width: 50%;
+		.aboutChannel {
+			@apply flex items-center;
+			> div:nth-child(2) {
+				@apply ml-7;
+				h2 {
+					@apply text-xl font-medium overflow-hidden;
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+				}
+			}
+		}
+		.avatar {
+			svg {
+				@apply rounded-3xl;
+				min-width: 45px;
+				min-height: 45px;
+				max-width: 45px;
+				max-height: 45px;
+				border: 3.5px solid transparent;
+				outline: 2px solid #888;
+				box-shadow: 0 0 2px white;
+			}
+		}
+	}
+	.btnExit {
+		@apply flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-medium bg-gray-700 cursor-pointer;
+		min-width: 30%;
+		transition: all 500ms ease-in-out;
+		&:hover {
+			@apply bg-gray-800;
+		}
+		&:active {
+			@apply bg-gray-900;
+		}
+	}
+	.description {
+		@apply my-9;
+		p {
+			@apply mx-7 w-1/2 overflow-hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 6;
+			-webkit-box-orient: vertical;
+		}
+	}
+}

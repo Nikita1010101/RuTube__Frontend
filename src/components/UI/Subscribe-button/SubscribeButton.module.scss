@@ -1,0 +1,26 @@
+.btnSubscribe {
+  @apply flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-medium bg-red-600 cursor-pointer;
+  min-width: 50%;
+  transition: all 500ms ease-in-out;
+  &:hover {
+    @apply bg-red-700;
+  }
+  &:active {
+    @apply bg-red-800;
+  }
+  &.subscribed {
+    @apply bg-gray-600;
+    &:hover {
+      @apply bg-gray-700;
+    } 
+    &:active {
+      @apply bg-gray-800;
+    }
+  }
+  &.loading {
+    @apply pointer-events-none;
+  }
+  span {
+    @apply ml-1.5;
+  }
+}

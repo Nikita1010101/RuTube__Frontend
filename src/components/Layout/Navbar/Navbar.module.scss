@@ -1,0 +1,5 @@
+.navbar {
+  @apply fixed px-10 my-6 w-screen grid bg-transparent z-10;;
+  grid-template-columns: 2fr 5fr 3fr;
+  align-items: end;
+}

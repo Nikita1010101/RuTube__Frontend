@@ -1,0 +1,9 @@
+.discoverLoader {
+  @apply h-96 bg-secondary;
+  &.mostPopular {
+    width: 100%;
+  }
+  &.random {
+    width: 102%;
+  }
+}

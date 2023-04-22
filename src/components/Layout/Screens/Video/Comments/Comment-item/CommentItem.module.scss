@@ -1,0 +1,25 @@
+.commentItem {
+	@apply flex m-0.5 mb-4;
+	.avatar {
+		@apply opacity-60 rounded-3xl cursor-pointer;
+		min-width: 36px;
+		min-height: 36px;
+		max-width: 36px;
+		max-height: 36px;
+		border: 3.5px solid transparent;
+		outline: 2px solid #888;
+		box-shadow: 0 0 3px white;
+	}
+	.content {
+		@apply pl-3;
+		h3 {
+			@apply pb-1 text-sm font-medium;
+		}
+		p {
+			@apply text-sm font-normal text-gray-400;
+			font {
+				@apply text-sm font-normal text-gray-400;
+			}
+		}
+	}
+}
