@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
+import { API_URL } from '../../api/axios'
 import { IUser } from '@/types/user.interface'
 
 export const userApi = createApi({
 	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({
-		baseUrl: process.env.API_URL
+		baseUrl: API_URL
 	}),
 	tagTypes: ['Video', 'User'],
 	endpoints: builder => ({
