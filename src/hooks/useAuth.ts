@@ -3,7 +3,7 @@ import { useApi } from './useApi'
 export const useAuth = () => {
 	if (typeof window === 'undefined') return {}
 
-	const { id } = JSON.parse(localStorage.getItem('AuthId') || '')
+	const { id } = JSON.parse(localStorage.getItem('AuthId') || '101')
 	const { user: profile, isLoading } = useApi.GetUserById(String(id))
 	const { users } = useApi.GetAllUsers()
 	const { addUser } = useApi.AddUser()
@@ -14,7 +14,7 @@ export const useAuth = () => {
 		)
 		localStorage.setItem(
 			'AuthId',
-			JSON.stringify({ id: foundUser?.id || '1000000000' })
+			JSON.stringify({ id: foundUser?.id || '101' })
 		)
 		location.reload()
 	}
@@ -37,7 +37,7 @@ export const useAuth = () => {
 			: 0
 			localStorage.setItem(
 				'AuthId',
-				JSON.stringify({ id: String(users?.length) || '1000000000' })
+				JSON.stringify({ id: String(users?.length) || '101' })
 			)
 		location.reload()
 	}
@@ -45,7 +45,7 @@ export const useAuth = () => {
 	const logout = (): void => {
 		const check = confirm('Вы хотите выйти из аккаунта?')
 		if (check) {
-			localStorage.setItem('AuthId', JSON.stringify({ id: '1000000000' }))
+			localStorage.setItem('AuthId', JSON.stringify({ id: '101' }))
 			location.reload()
 		}
 	}
