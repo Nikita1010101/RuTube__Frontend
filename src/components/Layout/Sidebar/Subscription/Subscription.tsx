@@ -11,7 +11,7 @@ const Subscription: FC<IVideo> = ({ userId, user: { photo, name } }) => {
 			<div className={styles.subscription}>
 				<Avatar
 					type='subscription'
-					imageUrl={`https://yt3.ggpht.com/${photo}=s88-c-k-c0x00ffffff-no-rj`}
+					imageUrl={`http://drive.google.com/uc?export=view&id=1${photo}`}
 				/>
 				<h2>{name}</h2>
 			</div>

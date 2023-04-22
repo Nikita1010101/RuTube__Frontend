@@ -45,7 +45,7 @@ const VideoContent: FC<IVideoContent> = ({ user, id }) => {
 				<div className={styles.aboutChannel}>
 					<Avatar
 						type='default'
-						imageUrl={`https://yt3.ggpht.com/${user?.photo}=s88-c-k-c0x00ffffff-no-rj`}
+						imageUrl={`http://drive.google.com/uc?export=view&id=1${user?.photo}`}
 					/>
 					<div>
 						<h2>
@@ -58,12 +58,7 @@ const VideoContent: FC<IVideoContent> = ({ user, id }) => {
 				</div>
 				<div className={styles.descriptionChannel}>
 					<h1>{video?.title}</h1>
-					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-						Exercitationem libero sed asperiores reiciendis ab, eos architecto
-						at cupiditate autem fuga! Libero commodi quidem similique impedit
-						enim repellendus rem animi vel.
-					</p>
+					<p>{video?.description}</p>
 				</div>
 			</div>
 			<div className={styles.rightContent}>

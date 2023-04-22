@@ -47,7 +47,7 @@ const CatalogItem: FC<IVideo> = ({
 				<h4>{formatTime(duration)}</h4>
 				<Avatar
 					type='default'
-					imageUrl={`https://yt3.ggpht.com/${user.photo}=s88-c-k-c0x00ffffff-no-rj`}
+					imageUrl={`http://drive.google.com/uc?export=view&id=1${user.photo}`}
 				/>
 			</div>
 		</div>
