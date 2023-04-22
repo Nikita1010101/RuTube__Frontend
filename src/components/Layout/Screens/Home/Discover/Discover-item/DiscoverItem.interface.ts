@@ -1,6 +1,6 @@
-import { IVideo } from "@/types/video.interface";
+import { IVideo } from '@/types/video.interface'
 
 export interface IDiscoverVideo {
-  type: 'most popular' | 'random'
-  video?: IVideo
+	type: 'most popular' | 'random'
+	video: IVideo
 }

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import styles from './RegisterForm.module.scss'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { IRegisterData } from './RegisterForm.interface'
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
+
 import { useAuth } from '@/hooks/useAuth'
 
 const RegisterForm: FC = () => {
@@ -12,11 +12,7 @@ const RegisterForm: FC = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm()
-	const onSubmit: SubmitHandler<IRegisterData> = ({
-		name,
-		email,
-		password
-	}) => {
+	const onSubmit: SubmitHandler<FieldValues> = ({ name, email, password }) => {
 		isRegistration
 			? register?.(name, email, password)
 			: login?.(email, password)
