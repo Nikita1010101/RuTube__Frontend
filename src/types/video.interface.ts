@@ -3,6 +3,12 @@ interface IUser {
 	photo: string
 }
 
+export interface IUserComments {
+	user: IUser
+	date: string
+	content: string
+}
+
 export interface IVideo {
 	id: string
 	userId: string
@@ -15,5 +21,6 @@ export interface IVideo {
 	duration: number
 	views: number
 	publicationDate: string
+	comments: IUserComments[]
 }
 

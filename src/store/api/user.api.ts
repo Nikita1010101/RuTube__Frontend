@@ -7,16 +7,18 @@ export const userApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: API_URL
 	}),
-	tagTypes: ['Video', 'User'],
+	tagTypes: ['User', 'Video', 'Comment'],
 	endpoints: builder => ({
 		getAllUsers: builder.query<IUser[], any>({
 			query: () => '/users',
 			providesTags: [{ type: 'User' }]
 		}),
+
 		getUserById: builder.query<IUser, string>({
 			query: (id: string) => `/users/${id}`,
 			providesTags: [{ type: 'User' }]
 		}),
+
 		updateUser: builder.mutation<IUser, Partial<IUser> & Pick<IUser, 'id'>>({
 			query: ({ id, ...body }) => ({
 				url: `/users/${id}`,
@@ -25,6 +27,7 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: [{ type: 'User' }]
 		}),
+
 		addUser: builder.mutation<IUser, Partial<IUser> & Pick<IUser, 'id'>>({
 			query: ({ ...body }) => ({
 				url: `/users`,
@@ -33,5 +36,6 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: [{ type: 'User' }]
 		})
+		
 	})
 })

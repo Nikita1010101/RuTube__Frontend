@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
-import Logo from './Logo/Logo'
 import styles from './Navbar.module.scss'
-import Profile from './Profile/Profile'
+
+import Logo from './Logo/Logo'
 import Search from './Search/Search'
+import Profile from './Profile/Profile'
 
 const Navbar: FC = () => {
 	return (

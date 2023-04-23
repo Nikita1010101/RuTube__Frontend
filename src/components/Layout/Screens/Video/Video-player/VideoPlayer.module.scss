@@ -1,17 +1,16 @@
 .player {
-	@apply relative w-full;
-	height: 55vh;
+	@apply w-full;
 	video {
-		@apply absolute rounded-md outline-none;
+		@apply rounded-md outline-none;
 	}
 
 	.controls {
-		@apply absolute flex justify-between items-center bg-secondary rounded-md opacity-0 bottom-0 shadow-lg;
+		@apply flex justify-between items-center bg-secondary rounded-md opacity-0 shadow-lg;
 		margin: 0 2.5%;
 		padding: 0.5% 1.5%;
 		width: 95%;
 		transition: all 500ms ease-in-out;
-		transform: translateY(0);
+		transform: translateY(-33px);
 		> div {
 			@apply cursor-pointer;
 		}
@@ -74,7 +73,7 @@
 	&:hover {
 		.controls {
 			@apply flex justify-between items-center opacity-80;
-			transform: translateY(-16px);
+			transform: translateY(-48px);
 		}
 	}
 }

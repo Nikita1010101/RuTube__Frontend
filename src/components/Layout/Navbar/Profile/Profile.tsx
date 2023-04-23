@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react'
 import styles from './Profile.module.scss'
+
 import { FaUserAlt } from 'react-icons/fa'
+
 import RegisterForm from './Register-form/RegisterForm'
+
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/router'
 

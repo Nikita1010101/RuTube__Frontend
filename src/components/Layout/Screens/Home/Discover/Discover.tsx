@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react'
-import React from 'react'
+import { FC } from 'react'
 import styles from './Discover.module.scss'
+
 import DiscoverLoader from '@/components/UI/Skeletons/DiscoverLoader/DiscoverLoader'
 import DiscoverVideo from './Discover-item/DiscoverItem'
 import { IDiscover } from './Discover.interface'

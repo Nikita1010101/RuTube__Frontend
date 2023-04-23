@@ -4,14 +4,14 @@ import styles from './Sidebar.module.scss'
 import SidebarItem from './Sidebar-item/SidebarItem'
 import Subscription from './Subscription/Subscription'
 
-import { publicRoutes, privateRoutes } from './Sidebar.data'
-
 import { useApi } from '@/hooks/useApi'
 import { useAuth } from '@/hooks/useAuth'
 
+import { publicRoutes, privateRoutes } from './Sidebar.data'
+
 const Sidebar: FC = () => {
 	const { profile } = useAuth()
-	const { videos } = useApi.GetAllVideos()
+	const { videos } = useApi.getAllVideos()
 
 	const videoSubscriptions = videos?.filter(video =>
 		profile?.subscriptions.includes(video.userId)

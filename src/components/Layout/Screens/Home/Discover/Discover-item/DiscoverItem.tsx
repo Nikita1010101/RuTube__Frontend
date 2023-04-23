@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
 import styles from './DiscoverItem.module.scss'
 
@@ -14,6 +14,7 @@ const DiscoverVideo: FC<IDiscoverVideo> = ({
 	video: { id, previewUrl, title, user, views, publicationDate, duration }
 }) => {
 	dayjs.extend(realativeTime)
+
 	return (
 		<div
 			className={`${

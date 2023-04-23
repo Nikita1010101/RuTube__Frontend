@@ -1,18 +1,19 @@
 import React, { FC } from 'react'
 import styles from './MyChannel.module.scss'
 
+import { FaUserAlt } from 'react-icons/fa'
+
 import Layout from '../../Layout'
 import Catalog from '../Home/Catalog/Catalog'
 
 import { useAuth } from '@/hooks/useAuth'
 import { useApi } from '@/hooks/useApi'
 
-import { FaUserAlt } from 'react-icons/fa'
 import Avatar from '@/components/UI/Avatar/Avatar'
 
 const MyChannel: FC = () => {
 	const { profile, logout } = useAuth()
-	const { videos } = useApi.GetAllVideos()
+	const { videos } = useApi.getAllVideos()
 	const likedVideos = videos?.filter(video =>
 		video?.likes.includes(String(profile?.id))
 	)

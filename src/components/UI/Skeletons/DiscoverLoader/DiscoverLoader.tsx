@@ -1,7 +1,8 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import ContentLoader from 'react-content-loader'
-import { IDiscoverLoader } from './DiscoverLoader.interface'
 import styles from './DiscoverLoader.module.scss'
+
+import { IDiscoverLoader } from './DiscoverLoader.interface'
 
 const DiscoverLoader: FC<IDiscoverLoader> = ({ type }) => {
 	return (

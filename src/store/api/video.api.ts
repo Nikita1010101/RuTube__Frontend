@@ -7,10 +7,12 @@ export const videoApi = userApi.injectEndpoints({
 			query: () => '/videos',
 			providesTags: [{ type: 'Video' }]
 		}),
+
 		getVideoById: builder.query<IVideo, any>({
 			query: (id: string) => `/videos/${id}`,
 			providesTags: [{ type: 'Video' }]
 		}),
+
 		updateVideo: builder.mutation<IVideo, Partial<IVideo> & Pick<IVideo, 'id'>>(
 			{
 				query: ({ id, ...body }) => ({
@@ -21,5 +23,6 @@ export const videoApi = userApi.injectEndpoints({
 				invalidatesTags: [{ type: 'Video' }]
 			}
 		)
+		
 	})
 })

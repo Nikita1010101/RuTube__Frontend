@@ -1,7 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styles from './NotAuth.module.scss'
-import { useRouter } from 'next/router'
+
 import Layout from '../../Layout'
+
+import { useRouter } from 'next/router'
 
 const NotAuth: FC = () => {
 	const { replace } = useRouter()

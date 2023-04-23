@@ -9,7 +9,7 @@ import { useApi } from '@/hooks/useApi'
 
 const MySubscriptions: FC = () => {
 	const { profile } = useAuth()
-	const { videos } = useApi.GetAllVideos()
+	const { videos } = useApi.getAllVideos()
 
 	const videoSubscriptions = videos?.filter(video =>
 		profile?.subscriptions.includes(video.userId)

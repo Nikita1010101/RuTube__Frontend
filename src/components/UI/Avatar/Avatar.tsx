@@ -1,6 +1,7 @@
-import React, { FC } from 'react'
-import { IAvatar } from './Avatar.interface'
+import { FC } from 'react'
 import styles from './Avatar.module.scss'
+
+import { IAvatar } from './Avatar.interface'
 
 const Avatar: FC<IAvatar> = ({ type, imageUrl }) => {
 	return (

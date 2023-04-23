@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styles from './Channel.module.scss'
 
 import Layout from '@/components/Layout/Layout'
 import Catalog from '../../Home/Catalog/Catalog'
 import Avatar from '@/components/UI/Avatar/Avatar'
 import SubscribeButton from '@/components/UI/Subscribe-button/SubscribeButton'
-
 import { IChannel } from './Channel.interface'
-import { userApi } from '@/store/api/user.api'
+
+import { useApi } from '@/hooks/useApi'
 
 const Channel: FC<IChannel> = ({ userId, videos }) => {
-	const { data: user } = userApi.useGetUserByIdQuery(userId)
+	const { user } = useApi.getUserById(userId)
 
 	const channelVideos = videos.filter(video => video.user.name === user?.name)
 	return (

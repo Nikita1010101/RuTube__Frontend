@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import styles from './SidebarItem.module.scss'
 
 import { ISidebarRoutes } from '../Sidebar.interface'
+
+import { useRouter } from 'next/router'
 
 const SidebarItem: FC<ISidebarRoutes> = ({ title, route, picture, size }) => {
 	const { asPath } = useRouter()

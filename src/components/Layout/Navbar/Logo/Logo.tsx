@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import React, { FC } from 'react'
+import Link from 'next/link'
 import styles from './Logo.module.scss'
 
 const Logo: FC = () => {

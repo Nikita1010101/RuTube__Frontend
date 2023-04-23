@@ -1,4 +1,4 @@
-import React, { useState, FC, memo } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
 import styles from './CatalogItem.module.scss'
 
@@ -10,14 +10,13 @@ import { formatTime } from '@/utils/formatTime'
 
 import relativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
-require('dayjs/locale/ru')
+import { formatViews } from '@/utils/formatViews'
 
 const CatalogItem: FC<IVideo> = ({
 	id,
 	userId,
 	user,
 	previewUrl,
-	videoUrl,
 	title,
 	duration,
 	views,
@@ -38,11 +37,12 @@ const CatalogItem: FC<IVideo> = ({
 						<Link href={`/my-subscriptions/${userId}`}>{user.name}</Link>
 					</h2>
 					<h1>{title}</h1>
-					<h3>{fromatNumber(views)} views</h3>
+					<h3>
+						{fromatNumber(views)} {formatViews(views)}
+					</h3>
 					<h3>{dayjs(new Date(publicationDate)).fromNow()}</h3>
 				</Link>
 			</div>
-
 			<div className={styles.overlays}>
 				<h4>{formatTime(duration)}</h4>
 				<Avatar

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styles from './Catalog.module.scss'
 
 import CatalogItemLoader from '@/components/UI/Skeletons/CatalogItemLoader/CatalogItemLoader'

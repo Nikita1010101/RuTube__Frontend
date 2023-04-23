@@ -1,9 +1,10 @@
-import React, { FC, MouseEvent } from 'react'
+import { FC, MouseEvent } from 'react'
 import styles from './VideoPlayer.module.scss'
 
 import { AiFillBackward, AiFillForward } from 'react-icons/ai'
 import { BiFullscreen } from 'react-icons/bi'
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
+
 import { IVideoPlayer } from './VideoPlayer.interface'
 
 import { formatVideoTime } from '@/utils/formatVideoTime'

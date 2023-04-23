@@ -1,42 +1,25 @@
-import Avatar from '@/components/UI/Avatar/Avatar'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
 import styles from './VideoContent.module.scss'
 
+import { AiFillCalendar, AiFillEye, AiFillHeart } from 'react-icons/ai'
+
+import Avatar from '@/components/UI/Avatar/Avatar'
 import SubscribeButton from '@/components/UI/Subscribe-button/SubscribeButton'
 import { IVideoContent } from './VideoContent.interface'
 
-import { AiFillCalendar, AiFillEye, AiFillHeart } from 'react-icons/ai'
+import { fromatNumber } from '@/utils/formatNumber'
 
 import { useApi } from '@/hooks/useApi'
-import { useAuth } from '@/hooks/useAuth'
+import { useLike } from '@/hooks/useLike'
 
-import { fromatNumber } from '@/utils/formatNumber'
 import realativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
 
 const VideoContent: FC<IVideoContent> = ({ user, id }) => {
-	const { profile } = useAuth()
-	const { video } = useApi.GetVideoById(id)
-	const { updateVideo, isLoading } = useApi.UpdateVideo()
+	const { video } = useApi.getVideoById(id)
 
-	const isLike = video?.likes.some(id => profile?.id === id)
-
-	const updateLike = () => {
-		if (profile) {
-			let updatedVideo = Object.assign({}, video)
-
-			if (isLike) {
-				updatedVideo.likes = updatedVideo.likes.filter(
-					likeId => profile?.id !== likeId
-				)
-			} else {
-				updatedVideo.likes = [...updatedVideo.likes, String(profile?.id)]
-			}
-
-			updateVideo(updatedVideo)
-		}
-	}
+	const { updateLike, isLoading, isLike } = useLike(id)
 
 	dayjs.extend(realativeTime)
 	return (
@@ -69,7 +52,7 @@ const VideoContent: FC<IVideoContent> = ({ user, id }) => {
 						className={`${styles.btnLike} ${isLike ? styles.btnLiked : ''}`}
 					>
 						<AiFillHeart />
-						<span>{isLoading ? 'Загр...' : 'Лайк'}</span>
+						<span>{isLoading ? 'Загру...' : 'Лайк'}</span>
 					</div>
 				</div>
 				<div className={styles.numbers}>

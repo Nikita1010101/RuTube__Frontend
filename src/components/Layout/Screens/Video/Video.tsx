@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import styles from './Video.module.scss'
 
 import Layout from '@/components/Layout/Layout'
@@ -14,8 +14,9 @@ const Video: FC<IItemVideo> = ({
 	video: { id, userId, videoUrl, previewUrl }
 }) => {
 	const player = usePlayer()
-	const { user } = useApi.GetUserById(userId)
-	const { video } = useApi.GetVideoById(id)
+	const { user } = useApi.getUserById(userId)
+	const { video } = useApi.getVideoById(id)
+
 	return (
 		<Layout title='Видео' description='Страница для просмотра видео'>
 			<div className={styles.wrapper}>

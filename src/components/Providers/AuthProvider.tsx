@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { FC, PropsWithChildren } from 'react'
+import dynamic from 'next/dynamic'
 import { TypeComponentAuthFields } from '@/types/page.interface'
 
 const DinamicCheckRole = dynamic(() => import('./CheckRoles'), {

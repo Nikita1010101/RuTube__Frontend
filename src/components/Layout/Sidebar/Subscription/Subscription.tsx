@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import Link from 'next/link'
 import styles from './Subscription.module.scss'
 
-import { IVideo } from '@/types/video.interface'
 import Avatar from '@/components/UI/Avatar/Avatar'
+import { IVideo } from '@/types/video.interface'
 
 const Subscription: FC<IVideo> = ({ userId, user: { photo, name } }) => {
 	return (
