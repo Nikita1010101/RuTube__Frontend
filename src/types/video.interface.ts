@@ -4,6 +4,7 @@ interface IUser {
 }
 
 export interface IUserComments {
+	id: string
 	user: IUser
 	date: string
 	content: string

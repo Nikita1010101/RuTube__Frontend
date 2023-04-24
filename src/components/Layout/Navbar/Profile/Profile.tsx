@@ -21,7 +21,11 @@ const Profile: FC = () => {
 	return (
 		<>
 			<div className={styles.profile}>
-				<FaUserAlt onClick={checkUser} className={styles.avatar} />
+				<FaUserAlt
+					onClick={checkUser}
+					className={styles.avatar}
+					title={profile ? 'Мой канал' : 'Авторизация'}
+				/>
 			</div>
 			<div
 				onClick={() => setIsForm(prev => (prev = false))}

@@ -2,15 +2,19 @@ import { FC, PropsWithChildren } from 'react'
 import Head from 'next/head'
 import styles from './Layout.module.scss'
 
-import Sidebar from './Sidebar/Sidebar'
 import Navbar from './Navbar/Navbar'
+import Sidebar from './Sidebar/Sidebar'
+import SearchResults from './Screens/Search-results/SearchResults'
 import { ILayout } from './Layout.interface'
+
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 const Layout: FC<PropsWithChildren<ILayout>> = ({
 	children,
 	title,
 	description
 }) => {
+	const { searchValue } = useTypedSelector(state => state.search)
 	return (
 		<>
 			<Head>
@@ -21,7 +25,7 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({
 			<Navbar />
 			<main className={styles.home}>
 				<Sidebar />
-				{children}
+				{!searchValue ? <>{children}</> : <SearchResults />}
 			</main>
 		</>
 	)

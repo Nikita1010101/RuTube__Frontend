@@ -23,6 +23,5 @@ export const videoApi = userApi.injectEndpoints({
 				invalidatesTags: [{ type: 'Video' }]
 			}
 		)
-		
 	})
 })

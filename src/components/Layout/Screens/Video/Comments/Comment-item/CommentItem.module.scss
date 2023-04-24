@@ -1,5 +1,6 @@
 .commentItem {
-	@apply w-11/12 flex m-0.5 mb-4;
+	@apply flex p-2 mb-2 rounded-lg;
+	transition: all .2s ease-in-out;
 	.avatar {
 		@apply opacity-60 rounded-3xl cursor-pointer;
 		min-width: 36px;
@@ -18,13 +19,26 @@
 				@apply w-3/5 pb-1 text-sm font-medium;
 			}
 			h5 {
-				@apply w-1/3 text-xs text-gray-400;
+				@apply text-xs text-gray-400;
+				width: 31%;
 			}
 		}
 		p {
 			@apply text-sm font-normal text-gray-400;
 			font {
 				@apply text-sm font-normal text-gray-400;
+			}
+		}
+		svg {
+			@apply w-6 h-6 ml-auto p-1 mt-1 rounded-lg opacity-60 shadow-md cursor-pointer;
+		transition: all .2s ease-in-out;
+		}
+	}
+	&:hover {
+		@apply bg-gray-600;
+		.content {
+			svg:hover {
+				@apply bg-slate-700 opacity-100 shadow;
 			}
 		}
 	}

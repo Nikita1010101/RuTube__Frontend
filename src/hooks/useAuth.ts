@@ -20,7 +20,7 @@ export const useAuth = () => {
 		setLocaleStorage(foundUser?.id)
 	}
 
-	const register = (name: string, email: string, password: string): void => {
+	const register = (fullName: string, email: string, password: string): void => {
 		const foundUser = users?.find(
 			user => user.email === email && user.password === password
 		)
@@ -34,7 +34,7 @@ export const useAuth = () => {
 				id: String(users?.length),
 				email: email,
 				password: password,
-				name: name,
+				name: fullName,
 				photo: '',
 				subscriptions: [],
 				subscribers: [],

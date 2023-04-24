@@ -12,9 +12,13 @@ const RegisterForm: FC = () => {
 		handleSubmit,
 		formState: { errors }
 	} = useForm()
-	const onSubmit: SubmitHandler<FieldValues> = ({ name, email, password }) => {
+	const onSubmit: SubmitHandler<FieldValues> = ({
+		fullName,
+		email,
+		password
+	}) => {
 		isRegistration
-			? register?.(name, email, password)
+			? register?.(fullName, email, password)
 			: login?.(email, password)
 	}
 	return (
@@ -27,9 +31,9 @@ const RegisterForm: FC = () => {
 				{isRegistration && (
 					<input
 						type='text'
-						placeholder='Имя'
+						placeholder='Полное имя'
 						className={errors.name && styles.active}
-						{...inputRegister('name', {
+						{...inputRegister('fullName', {
 							required: true,
 							pattern:
 								/^(?=(?:[^A-Z]*[A-Z]){2,}[^A-Z]*$)(?=(?:[^a-z]*[a-z]){2,40}[^a-z]*$)(?=(?:\D*\d){0,10}\D*$).+$/m

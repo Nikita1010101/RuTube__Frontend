@@ -5,28 +5,18 @@ import { IoMdSend } from 'react-icons/io'
 
 import CommentItem from './Comment-item/CommentItem'
 import { IComments } from './Comments.interface'
-import { useCommment } from '@/hooks/useComment'
-import { months } from './Comments.data'
+import { useAddCommment } from '@/hooks/useAddComment'
 
 const Comments: FC<IComments> = ({ id, inputRef, comments }) => {
 	const [inputValue, setInputValue] = useState<string>('')
-	const { addComment, isLoading } = useCommment(id, inputValue)
-	const date = new Date()
+	const { addComment, isLoading } = useAddCommment(id)
 
 	const additionComment = () => {
 		if (inputValue) {
-			addComment()
+			addComment(inputValue)
 			setInputValue('')
 		}
 	}
-
-	console.log(
-		[
-			date.getDate() < 10 ? '0' + date.getDate() : date.getDate(),
-			months[date.getMonth()],
-			date.getFullYear()
-		].join(' ')
-	)
 
 	return (
 		<div className={styles.comments}>
@@ -34,7 +24,7 @@ const Comments: FC<IComments> = ({ id, inputRef, comments }) => {
 			<div className={styles.line}></div>
 			<div className={styles.content}>
 				{comments?.map((comment, ind) => (
-					<CommentItem key={ind} {...comment} />
+					<CommentItem key={ind} userId={id} {...comment} />
 				))}
 			</div>
 			<div className={styles.input}>

@@ -1,5 +1,6 @@
 .sidebarItem {
 	&.active {
+		@apply shadow-md;
 		div {
 			@apply opacity-100;
 			background: #ff7551;
@@ -14,10 +15,10 @@
 	@apply w-4/5 my-2 mx-5 p-2.5 flex items-center rounded-xl cursor-pointer;
 	transition: all 200ms ease-in-out;
 	&:hover {
-		@apply bg-gray-700;
+		@apply bg-gray-700 shadow-md;
 	}
 	&:active {
-		@apply bg-gray-800;
+		@apply bg-gray-800 shadow-md;
 	}
 	div {
 		@apply mr-4 w-8 h-8 rounded-xl flex justify-center items-center bg-gray-500 opacity-50;
