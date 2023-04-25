@@ -30,15 +30,18 @@
 			}
 		}
 		svg {
-			@apply w-6 h-6 ml-auto p-1 mt-1 rounded-lg opacity-60 shadow-md cursor-pointer;
+			@apply w-6 h-6 ml-auto p-1 mt-1 rounded-lg opacity-0 shadow-md cursor-pointer;
 		transition: all .2s ease-in-out;
 		}
 	}
 	&:hover {
 		@apply bg-gray-600;
 		.content {
-			svg:hover {
-				@apply bg-slate-700 opacity-100 shadow;
+			svg {
+				@apply opacity-60;
+				&:hover {
+					@apply bg-slate-700 opacity-100 shadow;
+				}
 			}
 		}
 	}

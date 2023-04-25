@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, useEffect, useReducer } from 'react'
 import Head from 'next/head'
 import styles from './Layout.module.scss'
 
@@ -8,6 +8,8 @@ import SearchResults from './Screens/Search-results/SearchResults'
 import { ILayout } from './Layout.interface'
 
 import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { useRouter } from 'next/router'
+import { useActions } from '@/hooks/useActions'
 
 const Layout: FC<PropsWithChildren<ILayout>> = ({
 	children,
@@ -15,6 +17,13 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({
 	description
 }) => {
 	const { searchValue } = useTypedSelector(state => state.search)
+	const { changeSearchValue } = useActions()
+	const { asPath } = useRouter()
+
+	useEffect(() => {
+		changeSearchValue('')
+	}, [asPath])
+
 	return (
 		<>
 			<Head>

@@ -1,4 +1,10 @@
 .home {
-  @apply h-screen pt-24 grid;
-  grid-template-columns: 1fr 4fr;
+	@apply h-screen pt-24 grid;
+	grid-template-columns: 1fr 4fr;
+}
+
+@media screen and (max-width: 1200px) {
+	.home {
+    @apply w-11/12 ml-auto block;
+	}
 }

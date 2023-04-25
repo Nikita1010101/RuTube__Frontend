@@ -1,4 +1,7 @@
 .sidebarItem {
+	@apply mb-0;
+	transform: translateY(0);
+	transition: all .3s ease-in-out;
 	&.active {
 		@apply shadow-md;
 		div {
@@ -6,33 +9,48 @@
 			background: #ff7551;
 		}
 		h2 {
-			@apply text-white;
-      font {
-        @apply text-white;
-      }
+			@apply text-white overflow-hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			font {
+				@apply text-white;
+			}
 		}
 	}
-	@apply w-4/5 my-2 mx-5 p-2.5 flex items-center rounded-xl cursor-pointer;
+	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
 	transition: all 200ms ease-in-out;
 	&:hover {
 		@apply bg-gray-700 shadow-md;
+		transform: translateY(-2px);
 	}
 	&:active {
 		@apply bg-gray-800 shadow-md;
 	}
 	div {
-		@apply mr-4 w-8 h-8 rounded-xl flex justify-center items-center bg-gray-500 opacity-50;
+		@apply mr-4 rounded-xl flex justify-center items-center bg-gray-500 opacity-50;
+		min-width: 32px;
+		min-height: 32px;
 		img {
 			filter: invert(1);
 			background: none;
 		}
 	}
 	h2 {
-		@apply text-gray-400 text-base font-medium;
+		@apply text-gray-400 text-base font-medium overflow-hidden;
 		transition: all 200ms ease-in-out;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 		font {
 			@apply text-gray-400 text-base font-medium;
 			transition: all 200ms ease-in-out;
 		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.sidebarItem {
+		
 	}
 }

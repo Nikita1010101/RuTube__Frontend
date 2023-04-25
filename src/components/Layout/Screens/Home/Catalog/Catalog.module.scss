@@ -11,3 +11,14 @@
     row-gap: 1.5em;
   }
 }
+
+@media screen and (max-width: 1380px) {
+  .catalog {
+    .content {
+      grid-template-columns: repeat(3, 31.4%);
+    justify-content: space-between;
+    justify-items: center;
+    row-gap: 1.5em;
+    }
+  }
+}

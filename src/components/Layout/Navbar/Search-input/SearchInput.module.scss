@@ -9,3 +9,16 @@
 		@apply w-4 h-full bg-secondary opacity-50;
 	}
 }
+
+@media screen and (max-width: 1380px) {
+	.search {
+		@apply w-1/2;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.search {
+		@apply w-2/3;
+	}
+}
+

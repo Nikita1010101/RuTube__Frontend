@@ -17,7 +17,13 @@ const SidebarItem: FC<ISidebarRoutes> = ({ title, route, picture, size }) => {
 				}`}
 			>
 				<div>
-					<Image src={picture} width={size} height={size} alt={title} />
+					<Image
+						src={picture}
+						width={size}
+						height={size}
+						alt={title}
+						style={{ minHeight: `${size}`, minWidth: `${size}` }}
+					/>
 				</div>
 				<h2>{title}</h2>
 			</div>

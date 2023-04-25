@@ -1,4 +1,6 @@
 .subscription {
+	transform: translateY(0);
+	transition: all 0.3s ease-in-out;
 	&.active {
 		div {
 			@apply opacity-100;
@@ -8,10 +10,11 @@
 			@apply text-white;
 		}
 	}
-	@apply w-4/5 my-2 mx-5 p-2.5 flex items-center rounded-xl cursor-pointer;
+	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
 	transition: all 200ms ease-in-out;
 	&:hover {
 		@apply bg-gray-700 shadow-md;
+		transform: translateY(-2px);
 	}
 	&:active {
 		@apply bg-gray-800 shadow-md;
