@@ -1,5 +1,6 @@
 .sidebarItem {
-	@apply mb-0;
+	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
+	transition: all 200ms ease-in-out;
 	transform: translateY(0);
 	transition: all .3s ease-in-out;
 	&.active {
@@ -18,8 +19,6 @@
 			}
 		}
 	}
-	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
-	transition: all 200ms ease-in-out;
 	&:hover {
 		@apply bg-gray-700 shadow-md;
 		transform: translateY(-2px);
@@ -51,6 +50,23 @@
 
 @media screen and (max-width: 1200px) {
 	.sidebarItem {
-		
+		@apply w-full;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.sidebarItem {
+		@apply w-full;
+		div {
+			@apply mr-0;
+		}
+		h2 {
+			@apply hidden;
+		}
+		&.active {
+			h2 {
+				@apply hidden;
+			}
+		}
 	}
 }

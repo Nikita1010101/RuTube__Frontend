@@ -10,7 +10,7 @@
 	}
 }
 
-@media screen and (max-width: 1380px) {
+@media screen and (max-width: 1400px) {
 	.search {
 		@apply w-1/2;
 	}
@@ -18,7 +18,12 @@
 
 @media screen and (max-width: 1200px) {
 	.search {
-		@apply w-2/3;
+		@apply w-3/5;
 	}
 }
 
+@media screen and (max-width: 768px) {
+	.search {
+		@apply w-11/12;
+	}
+}

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect, useReducer } from 'react'
+import { FC, PropsWithChildren, useEffect } from 'react'
 import Head from 'next/head'
 import styles from './Layout.module.scss'
 
@@ -10,6 +10,7 @@ import { ILayout } from './Layout.interface'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { useRouter } from 'next/router'
 import { useActions } from '@/hooks/useActions'
+import { useAuth } from '@/hooks/useAuth'
 
 const Layout: FC<PropsWithChildren<ILayout>> = ({
 	children,
@@ -19,6 +20,7 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({
 	const { searchValue } = useTypedSelector(state => state.search)
 	const { changeSearchValue } = useActions()
 	const { asPath } = useRouter()
+	const { profile } = useAuth()
 
 	useEffect(() => {
 		changeSearchValue('')
@@ -32,7 +34,7 @@ const Layout: FC<PropsWithChildren<ILayout>> = ({
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
 			<Navbar />
-			<main className={styles.home}>
+			<main className={`${styles.home} ${profile && styles.isAuth}`}>
 				<Sidebar />
 				{!searchValue ? <>{children}</> : <SearchResults />}
 			</main>

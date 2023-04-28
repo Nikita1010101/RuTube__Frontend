@@ -29,12 +29,12 @@ const CommentItem: FC<ICommentItem> = ({
 				<FaUserAlt className={styles.avatar} />
 			)}
 			<div className={styles.content}>
-				<div>
-					<h3>{name}</h3>
-					<h5>{date}</h5>
-				</div>
+				<h3>{name}</h3>
 				<p>{content}</p>
-				<MdDelete onClick={checkDeleteComment} title='Удалить комментарий' />
+				<div>
+					<h5>{date}</h5>
+					<MdDelete onClick={checkDeleteComment} title='Удалить комментарий' />
+				</div>
 			</div>
 		</div>
 	)

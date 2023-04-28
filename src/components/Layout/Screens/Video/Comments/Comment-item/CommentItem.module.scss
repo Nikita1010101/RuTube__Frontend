@@ -1,6 +1,7 @@
 .commentItem {
-	@apply flex p-2 mb-2 rounded-lg;
-	transition: all .2s ease-in-out;
+	@apply flex p-2 mb-2 rounded-lg cursor-pointer;
+	transform: translateY(0);
+	transition: all 0.2s ease-in-out;
 	.avatar {
 		@apply opacity-60 rounded-3xl cursor-pointer;
 		min-width: 36px;
@@ -13,15 +14,8 @@
 	}
 	.content {
 		@apply w-full pl-3;
-		> div {
-			@apply flex justify-between;
-			h3 {
-				@apply w-3/5 pb-1 text-sm font-medium;
-			}
-			h5 {
-				@apply text-xs text-gray-400;
-				width: 31%;
-			}
+		h3 {
+			@apply pb-1 text-sm font-medium;
 		}
 		p {
 			@apply text-sm font-normal text-gray-400;
@@ -29,18 +23,38 @@
 				@apply text-sm font-normal text-gray-400;
 			}
 		}
-		svg {
-			@apply w-6 h-6 ml-auto p-1 mt-1 rounded-lg opacity-0 shadow-md cursor-pointer;
-		transition: all .2s ease-in-out;
+		> div {
+			@apply flex justify-between items-end;
+			h5 {
+				@apply text-xs text-gray-300;
+			}
+			svg {
+				@apply w-6 h-6 ml-auto p-1 mt-1 rounded-lg opacity-0 shadow-md cursor-pointer;
+				transition: all 0.2s ease-in-out;
+			}
 		}
 	}
 	&:hover {
+		@apply shadow;
+		transform: translateY(-1px);
 		@apply bg-gray-600;
 		.content {
 			svg {
 				@apply opacity-60;
 				&:hover {
 					@apply bg-slate-700 opacity-100 shadow;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.commentItem {
+		.content {
+			> div {
+				svg {
+					@apply opacity-60;
 				}
 			}
 		}

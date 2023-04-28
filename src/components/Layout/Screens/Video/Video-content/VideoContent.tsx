@@ -24,51 +24,55 @@ const VideoContent: FC<IVideoContent> = ({ user, id }) => {
 	dayjs.extend(realativeTime)
 	return (
 		<div className={styles.content}>
-			<div className={styles.leftContent}>
-				<div className={styles.aboutChannel}>
-					<Avatar
-						type='default'
-						imageUrl={`http://drive.google.com/uc?export=view&id=1${user?.photo}`}
-					/>
-					<div>
-						<h2>
-							<Link href={`/my-subscriptions/${video?.userId}`}>
-								{user?.name}
-							</Link>
-						</h2>
-						<h4>{user?.subscribers.length} Подписчитков</h4>
+			<div className={styles.mainInfo}>
+				<div className={styles.leftContent}>
+					<div className={styles.aboutChannel}>
+						<Avatar
+							type='default'
+							imageUrl={`http://drive.google.com/uc?export=view&id=1${user?.photo}`}
+						/>
+						<div>
+							<h2>
+								<Link href={`/my-subscriptions/${video?.userId}`}>
+									{user?.name}
+								</Link>
+							</h2>
+							<h4>{user?.subscribers.length} Подписчитков</h4>
+						</div>
+					</div>
+					<div className={styles.descriptionChannel}>
+						<h1>{video?.title}</h1>
 					</div>
 				</div>
-				<div className={styles.descriptionChannel}>
-					<h1>{video?.title}</h1>
-					<p>{video?.description}</p>
+				<div className={styles.rightContent}>
+					<div className={styles.buttons}>
+						<SubscribeButton user={user} />
+						<div
+							onClick={updateLike}
+							className={`${styles.btnLike} ${isLike ? styles.btnLiked : ''}`}
+						>
+							<AiFillHeart />
+							<span>{isLoading ? 'Загру...' : 'Лайк'}</span>
+						</div>
+					</div>
+					<div className={styles.numbers}>
+						<div>
+							<AiFillEye />
+							<h4>{fromatNumber(video?.views)} просмотров</h4>
+						</div>
+						<div>
+							<AiFillHeart />
+							<h4>{video?.likes.length} лайков</h4>
+						</div>
+						<div>
+							<AiFillCalendar />
+							<h4>{dayjs(new Date(video?.publicationDate || '')).fromNow()}</h4>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div className={styles.rightContent}>
-				<div className={styles.buttons}>
-					<SubscribeButton user={user} />
-					<div
-						onClick={updateLike}
-						className={`${styles.btnLike} ${isLike ? styles.btnLiked : ''}`}
-					>
-						<AiFillHeart />
-						<span>{isLoading ? 'Загру...' : 'Лайк'}</span>
-					</div>
-				</div>
-				<div className={styles.numbers}>
-					<div>
-						<AiFillEye />
-						<h2>{fromatNumber(video?.views)} просмотров</h2>
-					</div>
-					<div>
-						<AiFillHeart />
-						<h2>{video?.likes.length} лайков</h2>
-					</div>
-					<div>
-						<AiFillCalendar />
-						<h2>{dayjs(new Date(video?.publicationDate || '')).fromNow()}</h2>
-					</div>
-				</div>
+			<div className={styles.description}>
+				<p>{video?.description}</p>
 			</div>
 		</div>
 	)

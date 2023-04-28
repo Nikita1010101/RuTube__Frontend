@@ -1,6 +1,7 @@
 .subscription {
+	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
 	transform: translateY(0);
-	transition: all 0.3s ease-in-out;
+	transition: all 200ms ease-in-out;
 	&.active {
 		div {
 			@apply opacity-100;
@@ -10,8 +11,6 @@
 			@apply text-white;
 		}
 	}
-	@apply w-11/12 my-2 p-2.5 flex items-center rounded-xl cursor-pointer;
-	transition: all 200ms ease-in-out;
 	&:hover {
 		@apply bg-gray-700 shadow-md;
 		transform: translateY(-2px);
@@ -26,6 +25,15 @@
 		-webkit-box-orient: vertical;
 		font {
 			@apply text-sm text-gray-500 font-bold;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.subscription {
+		@apply w-full;
+		h2 {
+			@apply hidden;
 		}
 	}
 }
