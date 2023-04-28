@@ -1,7 +1,6 @@
 .channel {
 	.wrapper {
-		@apply mb-3 mx-7 h-14 flex justify-between items-center;
-		width: 50%;
+		@apply w-3/4 mb-3 mx-7 h-14 flex justify-between items-center;
 		.aboutChannel {
 			@apply flex;
 			> div:nth-child(2) {
@@ -18,18 +17,6 @@
 				}
 			}
 		}
-		.btnSubscribe {
-			@apply flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-medium cursor-pointer bg-red-600;
-			transition: all 500ms ease-in-out;
-			span {
-				@apply ml-1.5;
-			}
-			width: 30%;
-			height: 70%;
-			&:hover {
-				@apply bg-red-700;
-			}
-		}
 	}
 	.description {
 		@apply mb-9;
@@ -41,3 +28,20 @@
 		}
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.channel {
+		.wrapper {
+			@apply w-11/12;
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.channel {
+		.wrapper {
+			@apply h-28 mb-8 flex flex-col items-start justify-between;
+		}
+	}
+}
+
