@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react'
+import { FC, MouseEvent, useState } from 'react'
 import styles from './VideoPlayer.module.scss'
 
 import { AiFillBackward, AiFillForward } from 'react-icons/ai'
@@ -8,8 +8,10 @@ import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { IVideoPlayer } from './VideoPlayer.interface'
 
 import { formatVideoTime } from '@/utils/formatVideoTime'
+import { videoApi } from '@/store/api/video.api'
 
-const VideoPlayer: FC<IVideoPlayer> = ({
+export const VideoPlayer: FC<IVideoPlayer> = ({
+	videoId,
 	previewUrl,
 	videoUrl,
 	videoRef,
@@ -20,6 +22,15 @@ const VideoPlayer: FC<IVideoPlayer> = ({
 	revert,
 	status
 }) => {
+	const [addView] = videoApi.useAddViewMutation()
+
+	const [viewed, setViewed] = useState<boolean>(false)
+
+	if (status.progress >= 90 && !viewed) {
+		setViewed(true)
+		addView({ id: Number(videoId) })
+	}
+
 	const rewind = (event: MouseEvent<HTMLDivElement>): void => {
 		const parent = event.currentTarget.getBoundingClientRect()
 		const elementWidth = event.currentTarget.clientWidth
@@ -32,13 +43,11 @@ const VideoPlayer: FC<IVideoPlayer> = ({
 		<div className={styles.player}>
 			<video
 				ref={videoRef}
-				poster={`//img.youtube.com/vi/${previewUrl}/maxresdefault.jpg`}
+				poster={previewUrl}
 				onClick={toggleVideo}
 				onDoubleClick={fullScreen}
 			>
-				<source
-					src={`http://drive.google.com/uc?export=watch&id=1${videoUrl}`}
-				/>
+				<source src={videoUrl} />
 			</video>
 			<div className={styles.controls}>
 				<div className={styles.controlerBtns}>
@@ -66,7 +75,8 @@ const VideoPlayer: FC<IVideoPlayer> = ({
 					</div>
 				</div>
 				<div className={styles.timeControls}>
-					{formatVideoTime(status.currentTime)} /
+					{formatVideoTime(status.currentTime)}
+					{' / '}
 					{formatVideoTime(status.videoTime)}
 				</div>
 				<div onClick={fullScreen} className={styles.fullScreenControls}>
@@ -76,5 +86,3 @@ const VideoPlayer: FC<IVideoPlayer> = ({
 		</div>
 	)
 }
-
-export default VideoPlayer

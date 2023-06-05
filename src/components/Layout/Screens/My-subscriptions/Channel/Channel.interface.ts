@@ -1,6 +1,5 @@
-import { IVideo } from "@/types/video.interface";
+import { IUser } from "@/types/user.interface";
 
 export interface IChannel {
-  userId: string
-  videos: IVideo[]
+  user: IUser 
 }

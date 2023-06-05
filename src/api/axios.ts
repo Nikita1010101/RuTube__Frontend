@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_URL = 'https://641ece07ad55ae01ccb02699.mockapi.io/api'
+export const API_URL = 'http://127.0.0.1:4200'
 
 export const axiosClassic = axios.create({
 	baseURL: API_URL

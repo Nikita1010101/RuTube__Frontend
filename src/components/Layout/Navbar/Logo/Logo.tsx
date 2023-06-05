@@ -1,13 +1,11 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
 import styles from './Logo.module.scss'
 
-const Logo: FC = () => {
+export const Logo: FC = () => {
 	return (
 		<Link title={'Главная'} href={'/'}>
 			<div className={styles.logo}>Rutube 2.0</div>
 		</Link>
 	)
 }
-
-export default Logo

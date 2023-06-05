@@ -3,17 +3,17 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { store } from 'store/store'
-import AuthProvider from '@/components/Providers/AuthProvider'
-import { TypeComponentAuthFields } from '@/types/page.interface'
+import { AuthProvider } from '@/components/Providers/AuthProvider'
+import { TComponentAuthFields } from '@/types/page.interface'
 
-type TypeApp = AppProps & TypeComponentAuthFields
+type TApp = AppProps & TComponentAuthFields
 
-const App = ({ Component, pageProps }: TypeApp) => {
+const App = ({ Component, pageProps }: TApp) => {
 	return (
 		<>
 			<NextNProgress
 				color='#29d'
-				startPosition={0.7}
+				startPosition={0.4}
 				stopDelayMs={200}
 				height={2}
 				showOnShallow={true}

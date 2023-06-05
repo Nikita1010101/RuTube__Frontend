@@ -1,41 +1,43 @@
 import { FC } from 'react'
 import styles from './Video.module.scss'
 
-import Layout from '@/components/Layout/Layout'
-import VideoPlayer from './Video-player/VideoPlayer'
-import VideoContent from './Video-content/VideoContent'
-import Comments from './Comments/Comments'
+import { Layout } from '@/components/Layout/Layout'
+import { VideoPlayer } from './Video-player/VideoPlayer'
+import { VideoContent } from './Video-content/VideoContent'
+import { Comments } from './Comments/Comments'
 import { IItemVideo } from './Video.interface'
 
-import { useApi } from '@/hooks/useApi'
+import { useAuth } from '@/hooks/useAuth'
+import { commentApi } from '@/store/api/comment.api'
 import { usePlayer } from '@/hooks/usePlayer'
 
-const Video: FC<IItemVideo> = ({
-	video: { id, userId, videoUrl, previewUrl }
-}) => {
+export const Video: FC<IItemVideo> = ({ video }) => {
+	const { profile } = useAuth()
+	const { data: comments } = commentApi.useGetCommentsByIdQuery(
+		Number(video?.id)
+	)
 	const player = usePlayer()
-	const { user } = useApi.getUserById(userId)
-	const { video } = useApi.getVideoById(id)
 
 	return (
 		<Layout title='Видео' description='Страница для просмотра видео'>
 			<div className={styles.wrapper}>
 				<div className={styles.video}>
 					<VideoPlayer
-						videoUrl={videoUrl}
-						previewUrl={previewUrl}
+						videoId={video?.id}
+						videoUrl={video?.videoPath}
+						previewUrl={video?.previewPath}
 						{...player}
 					/>
-					<VideoContent user={user} id={id} />
+					<VideoContent video={video} />
 				</div>
 				<Comments
-					id={id}
+					userName={profile?.name}
+					avatarPath={profile?.avatarPath}
+					videoId={video?.id}
 					inputRef={player.inputRef}
-					comments={video?.comments}
+					comments={comments}
 				/>
 			</div>
 		</Layout>
 	)
 }
-
-export default Video

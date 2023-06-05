@@ -1,10 +1,8 @@
 export interface IComment {
-  id: string 
-  videoId: string
-  time: string 
-  comments: {
-    userId: string 
-    author: string 
-    content: string
-  }
+	id?: string
+	avatarPath: string
+	userName: string
+	content: string
+	createdAt?: string
+	videoId: number
 }

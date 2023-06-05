@@ -26,7 +26,7 @@
 				h1 {
 					@apply text-2xl font-semibold mb-3;
 				}
-		}
+			}
 		}
 		.rightContent {
 			.buttons {
@@ -44,6 +44,9 @@
 						@apply bg-gray-700;
 						&:hover {
 							@apply bg-gray-800;
+						}
+						&:active {
+							@apply bg-gray-900;
 						}
 					}
 					span {
@@ -93,6 +96,22 @@
 
 @media screen and (max-width: 992px) {
 	.content {
+		.mainInfo {
+			.rightContent {
+				.buttons {
+					.btnLike {
+						&:active {
+							@apply bg-purple-800;
+							&.btnLiked {
+								&:active {
+									@apply bg-gray-800;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		.description {
 			@apply mb-20;
 		}

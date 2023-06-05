@@ -1,9 +1,9 @@
 import React from 'react'
 
-import MySubscriptions from '@/components/Layout/Screens/My-subscriptions/MySubscriptions'
-import { NextPageAuth } from '@/types/page.interface'
+import { MySubscriptions } from '@/components/Layout/Screens/My-subscriptions/MySubscriptions'
+import { TNextPageAuth } from '@/types/page.interface'
 
-const MySubscriptionsPage: NextPageAuth = () => {
+const MySubscriptionsPage: TNextPageAuth = () => {
 	return <MySubscriptions />
 }
 

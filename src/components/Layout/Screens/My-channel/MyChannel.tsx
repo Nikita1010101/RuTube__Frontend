@@ -1,24 +1,22 @@
 import React, { FC, useState } from 'react'
 import styles from './MyChannel.module.scss'
 
-import { FaUserAlt } from 'react-icons/fa'
-
-import Layout from '../../Layout'
-import Catalog from '../Home/Catalog/Catalog'
+import { Layout } from '../../Layout'
+import { Catalog } from '../Home/Catalog/Catalog'
 
 import { useAuth } from '@/hooks/useAuth'
-import { useApi } from '@/hooks/useApi'
 
-import Avatar from '@/components/UI/Avatar/Avatar'
+import { Avatar } from '@/components/UI/Avatar/Avatar'
 import { AiFillEdit } from 'react-icons/ai'
-import EditForm from './Edit-form/EditForm'
+import { EditForm } from './Edit-form/EditForm'
+import { videoApi } from '@/store/api/video.api'
 
-const MyChannel: FC = () => {
+export const MyChannel: FC = () => {
 	const [isEditForm, setIsEditForm] = useState<Boolean>(false)
 	const { profile, logout } = useAuth()
-	const { videos } = useApi.getAllVideos()
-	const likedVideos = videos?.filter(video =>
-		video?.likes.includes(String(profile?.id))
+
+	const { data: likedVideos } = videoApi.useGetLikedVideosQuery(
+		Number(profile?.id)
 	)
 
 	return (
@@ -27,11 +25,7 @@ const MyChannel: FC = () => {
 				<div className={styles.wrapper}>
 					<div className={styles.aboutChannel}>
 						<div className={styles.avatar}>
-							{profile?.photo !== '' ? (
-								<Avatar type='profile' imageUrl={profile?.photo} />
-							) : (
-								<FaUserAlt />
-							)}
+							<Avatar type='profile' imagePath={profile?.avatarPath} />
 						</div>
 						<div className={styles.profile}>
 							<h2>{profile?.name}</h2>
@@ -50,9 +44,7 @@ const MyChannel: FC = () => {
 				</div>
 				<div className={styles.description}>
 					<p>
-						{profile?.aboutChannel
-							? profile?.aboutChannel
-							: 'Описание профиля.'}
+						{profile?.description ? profile?.description : 'Описание профиля.'}
 					</p>
 				</div>
 				<Catalog videos={likedVideos} />
@@ -60,5 +52,3 @@ const MyChannel: FC = () => {
 		</Layout>
 	)
 }
-
-export default MyChannel

@@ -1,27 +1,25 @@
-interface IUser {
-	name: string
-	photo: string
+import { IComment } from "./comment.interface"
+import { IUser } from "./user.interface"
+
+interface IVideo {
+	id?: number
+  title: string
+  description: string
+  videoPath: string
+  previewPath: string
+  views: number
+  duration: number
+	createdAt?: string 
+	userId: number
+	user?: IUser
+  comments?: Array<IComment>
+	likes?: Array<IUser>
 }
 
-export interface IUserComments {
-	id: string
-	user: IUser
-	date: string
-	content: string
+interface ILikes {
+	id?: number 
+	userId: number
+	videoId: number
 }
 
-export interface IVideo {
-	id: string
-	userId: string
-	user: IUser
-	previewUrl: string
-	videoUrl: string
-	title: string
-	description: string
-	likes: string[]
-	duration: number
-	views: number
-	publicationDate: string
-	comments: IUserComments[]
-}
-
+export type { IVideo, ILikes }

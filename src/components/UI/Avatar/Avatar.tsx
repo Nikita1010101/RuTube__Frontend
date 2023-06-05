@@ -1,14 +1,18 @@
 import { FC } from 'react'
 import styles from './Avatar.module.scss'
 
+import { FaUserAlt } from 'react-icons/fa'
+
 import { IAvatar } from './Avatar.interface'
 
-const Avatar: FC<IAvatar> = ({ type, imageUrl }) => {
+export const Avatar: FC<IAvatar> = ({ type, imagePath }) => {
 	return (
 		<div className={`${styles.avatar} ${styles[type]}`}>
-			<img src={imageUrl} alt={'Аватар'} />
+			{imagePath !== '' ? (
+				<img src={imagePath} alt={'Аватар'} />
+			) : (
+				<FaUserAlt />
+			)}
 		</div>
 	)
 }
-
-export default Avatar

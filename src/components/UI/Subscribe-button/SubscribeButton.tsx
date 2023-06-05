@@ -5,14 +5,22 @@ import { FaUserPlus } from 'react-icons/fa'
 
 import { ISubscribeButton } from './SubscribeButton.interface'
 
+import { useAuth } from '@/hooks/useAuth'
 import { useSubscription } from '@/hooks/useSubscription'
+import { useThrottiling } from '@/hooks/useThrottling'
 
-const SubscribeButton: FC<ISubscribeButton> = ({ user }) => {
-	const { updateSubscription, isLoading, isSubscribe } = useSubscription(user)
+export const SubscribeButton: FC<ISubscribeButton> = ({ user }) => {
+	const { profile } = useAuth()
+	const { updateSubscription, isLoading, isSubscribe } = useSubscription(
+		Number(profile?.id),
+		Number(user?.id)
+	)
+
+	const throttle = useThrottiling(updateSubscription, 300)
 
 	return (
 		<div
-			onClick={() => updateSubscription()}
+			onClick={throttle}
 			className={`${styles.btnSubscribe} ${
 				isSubscribe ? styles.subscribed : ''
 			} ${isLoading ? styles.loading : ''} `}
@@ -25,5 +33,3 @@ const SubscribeButton: FC<ISubscribeButton> = ({ user }) => {
 		</div>
 	)
 }
-
-export default SubscribeButton

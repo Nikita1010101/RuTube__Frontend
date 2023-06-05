@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import styles from './NotAuth.module.scss'
 
-import Layout from '../../Layout'
+import { Layout } from '../../Layout'
 
 import { useRouter } from 'next/router'
 
-const NotAuth: FC = () => {
+export const NotAuth: FC = () => {
 	const { replace } = useRouter()
 
 	setTimeout(() => {
@@ -18,5 +18,3 @@ const NotAuth: FC = () => {
 		</Layout>
 	)
 }
-
-export default NotAuth

@@ -1,14 +1,14 @@
 import { FC } from 'react'
 
-import Layout from '@/components/Layout/Layout'
-import Catalog from '../Home/Catalog/Catalog'
-import Discover from './Discover/Discover'
+import { Layout } from '@/components/Layout/Layout'
+import { Catalog } from '../Home/Catalog/Catalog'
+import { Discover } from './Discover/Discover'
 import { IHome } from './Home.interface'
 
-import { useApi } from '@/hooks/useApi'
+import { videoApi } from '@/store/api/video.api'
 
-const Home: FC<IHome> = ({ popularVideo, randomVideo }) => {
-	const { videos } = useApi.getAllVideos()
+export const Home: FC<IHome> = ({ popularVideo, randomVideo }) => {
+	const { data: videos } = videoApi.useGetAllVideosQuery(null)
 	const randomVideos = videos
 		?.slice()
 		.sort(() => (Math.random() < 0.5 ? 1 : -1))
@@ -25,5 +25,3 @@ const Home: FC<IHome> = ({ popularVideo, randomVideo }) => {
 		</Layout>
 	)
 }
-
-export default Home

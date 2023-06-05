@@ -1,4 +1,4 @@
-export const formatViews = (views: number) => {
+export const formatViews = (views: number): string => {
 	const viewsStr = views.toString()
 	const lastNumbers =
 		viewsStr[viewsStr.length - 2] + viewsStr[viewsStr.length - 1]

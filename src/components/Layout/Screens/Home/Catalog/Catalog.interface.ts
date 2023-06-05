@@ -1,7 +1,7 @@
 import { IVideo } from "@/types/video.interface"
 
 export interface ICatalog {
-  videos?: IVideo[] 
+  videos?: IVideo[]
 }
 
 export interface ITitlesByPaths {

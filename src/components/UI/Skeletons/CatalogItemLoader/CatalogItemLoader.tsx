@@ -2,7 +2,7 @@ import { FC } from 'react'
 import ContentLoader from 'react-content-loader'
 import styles from './CatalogItemLoader.module.scss'
 
-const CatalogItemLoader: FC = () => {
+export const CatalogItemLoader: FC = () => {
 	return (
 		<div className={styles.content}>
 			<ContentLoader
@@ -24,5 +24,3 @@ const CatalogItemLoader: FC = () => {
 		</div>
 	)
 }
-
-export default CatalogItemLoader

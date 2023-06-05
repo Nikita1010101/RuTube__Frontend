@@ -1,8 +1,10 @@
-import { IUserComments } from '@/types/video.interface'
+import { IComment } from '@/types/comment.interface'
 import { LegacyRef } from 'react'
 
 export interface IComments {
-	id: string
+	userName?: string
+	avatarPath?: string
+	videoId?: number
 	inputRef?: LegacyRef<HTMLInputElement>
-  comments?: IUserComments[]
+  comments?: IComment[]
 }

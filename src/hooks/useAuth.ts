@@ -1,52 +1,61 @@
-import { useApi } from './useApi'
+import { TUseAuth } from '@/types/hook.interface'
 
-export const useAuth = () => {
+import { userApi } from '@/store/api/user.api'
+import { useLocalStorage } from './useLocalStorage'
+
+import { UserService } from '@/services/user.service'
+
+export const useAuth = (): Partial<TUseAuth> => {
 	if (typeof window === 'undefined') return {}
 
-	const { id } = JSON.parse(localStorage.getItem('AuthId') || '101')
-	const { user: profile, isLoading } = useApi.getUserById(String(id))
-	const { users } = useApi.getAllUsers()
-	const { addUser } = useApi.addUser()
+	const { storageValue, setValue } = useLocalStorage('AuthId', 0)
 
-	const setLocaleStorage = (id?: string): void => {
-		localStorage.setItem('AuthId', JSON.stringify({ id: id || '101' }))
-		location.reload()
+	const { data: profile, isLoading } = userApi.useGetUserByIdQuery(
+		Number(storageValue)
+	)
+	const [createUser] = userApi.useCreateUserMutation()
+
+	const login = async (email: string, password: string): Promise<void> => {
+		const { data: user } = await UserService.getProfile(email, password)
+
+		if (user) {
+			setValue(Number(user.id))
+			location.reload()
+		} else {
+			alert('Такого аккаунта не найдено!')
+		}
 	}
 
-	const login = (email: string, password: string): void => {
-		const foundUser = users?.find(
-			user => user.email === email && user.password === password
-		)
-		setLocaleStorage(foundUser?.id)
-	}
+	const register = async (
+		name: string,
+		email: string,
+		password: string
+	): Promise<void> => {
+		const { data: user } = await UserService.getProfile(email, password)
 
-	const register = (fullName: string, email: string, password: string): void => {
-		const foundUser = users?.find(
-			user => user.email === email && user.password === password
-		)
+		if (user) {
+			if (confirm('Такой пользователь уже существует. Войти в аккаунт?')) {
+				setValue(Number(user.id))
+				location.reload()
+			}
+		} else {
+			const payload = await createUser({
+				email,
+				password,
+				name
+			}).unwrap()
 
-		if (foundUser)
-			confirm('Такой пользователь уже существует. Войти в аккаунт?')
-				? setLocaleStorage(foundUser?.id)
-				: setLocaleStorage()
-		else
-			addUser({
-				id: String(users?.length),
-				email: email,
-				password: password,
-				name: fullName,
-				photo: '',
-				subscriptions: [],
-				subscribers: [],
-				aboutChannel: ''
-			})
+			setValue(Number(payload?.id))
+			location.reload()
+		}
 	}
 
 	const logout = (): void => {
 		const check = confirm('Вы хотите выйти из аккаунта?')
 		if (check) {
-			setLocaleStorage()
+			setValue(0)
 		}
+		location.reload()
 	}
 
 	return { profile, isLoading, login, register, logout }

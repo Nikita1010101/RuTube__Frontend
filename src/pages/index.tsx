@@ -1,8 +1,11 @@
-import Home from '@/components/Layout/Screens/Home/Home'
-import { IHome } from '@/components/Layout/Screens/Home/Home.interface'
-import { VideoService } from '@/services/video.service'
-import { IVideo } from '@/types/video.interface'
 import { GetStaticProps, NextPage } from 'next'
+
+import { Home } from '@/components/Layout/Screens/Home/Home'
+
+import { IHome } from '@/components/Layout/Screens/Home/Home.interface'
+import { IVideo } from '@/types/video.interface'
+
+import { VideoService } from '@/services/video.service'
 
 const HomePage: NextPage<IHome> = ({ popularVideo, randomVideo }) => {
 	return <Home popularVideo={popularVideo} randomVideo={randomVideo} />

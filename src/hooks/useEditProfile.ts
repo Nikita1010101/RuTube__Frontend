@@ -1,18 +1,17 @@
-import { useApi } from './useApi'
+import { IUseEDItProfile } from '@/types/hook.interface'
+
+import { userApi } from '@/store/api/user.api'
 import { useAuth } from './useAuth'
 
-export const useEditProfile = () => {
+export const useEditProfile = (): IUseEDItProfile => {
 	const { profile } = useAuth()
-	const { updateUser, isLoading } = useApi.updateUser()
+	const [editProfile, { isLoading }] = userApi.useEditProfileMutation()
 
-	const editProfile = (fullName: string, description: string) => {
-		let updatedProfile = Object.assign({}, profile)
-
-		updatedProfile.name = fullName
-		updatedProfile.aboutChannel = description
-
-		updateUser(updatedProfile)
+	const updateProfile = (id: number, name: string, description: string): void => {
+		if (profile) {
+			editProfile({ id, name, description })
+		}
 	}
 
-	return { editProfile, isLoading }
+	return { updateProfile, isLoading }
 }

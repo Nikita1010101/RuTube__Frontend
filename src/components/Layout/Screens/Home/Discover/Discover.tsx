@@ -1,17 +1,21 @@
 import { FC } from 'react'
 import styles from './Discover.module.scss'
 
-import DiscoverLoader from '@/components/UI/Skeletons/DiscoverLoader/DiscoverLoader'
-import DiscoverVideo from './Discover-item/DiscoverItem'
+import { DiscoverLoader } from '@/components/UI/Skeletons/DiscoverLoader/DiscoverLoader'
+import { DiscoverItem } from './Discover-item/DiscoverItem'
 import { IDiscover } from './Discover.interface'
 
-const Discover: FC<IDiscover> = ({ videos, popularVideo, randomVideo }) => {
+export const Discover: FC<IDiscover> = ({
+	videos,
+	popularVideo,
+	randomVideo
+}) => {
 	return (
 		<div className={styles.discover}>
 			{videos ? (
 				<>
-					<DiscoverVideo type={'most popular'} video={popularVideo} />
-					<DiscoverVideo type={'random'} video={randomVideo} />
+					<DiscoverItem type={'most popular'} video={popularVideo} />
+					<DiscoverItem type={'random'} video={randomVideo} />
 				</>
 			) : (
 				<>
@@ -22,5 +26,3 @@ const Discover: FC<IDiscover> = ({ videos, popularVideo, randomVideo }) => {
 		</div>
 	)
 }
-
-export default Discover

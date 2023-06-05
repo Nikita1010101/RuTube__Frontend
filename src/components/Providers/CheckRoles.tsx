@@ -1,11 +1,11 @@
 import { FC, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
 
-import { TypeComponentAuthFields } from '@/types/page.interface'
+import { TComponentAuthFields } from '@/types/page.interface'
 
 import { useAuth } from '@/hooks/useAuth'
 
-const CheckRoles: FC<PropsWithChildren<TypeComponentAuthFields>> = ({
+const CheckRoles: FC<PropsWithChildren<TComponentAuthFields>> = ({
 	children,
 	Component: { isOnlyUser }
 }) => {

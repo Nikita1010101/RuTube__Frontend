@@ -11,7 +11,7 @@ const nextConfig = {
 		APP_URL: process.env.REACT_APP_URL
 	},
 	images: {
-		domains: ['localhost', 'yt3.ggpht.com/']
+		domains: ['localhost', '127.0.0.1', 'yt3.ggpht.com/']
 	}
 }
 

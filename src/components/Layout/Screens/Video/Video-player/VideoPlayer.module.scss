@@ -94,6 +94,13 @@
 			transform: translateY(-48px);
 			.progressBar {
 				@apply w-2/3;
+				&:hover {
+					div {
+						div {
+							@apply w-2 h-2 bg-gray-800;
+						}
+					}
+				}
 			}
 		}
 	}

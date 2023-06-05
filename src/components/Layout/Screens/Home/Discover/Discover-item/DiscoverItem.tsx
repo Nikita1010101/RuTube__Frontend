@@ -2,44 +2,37 @@ import { FC } from 'react'
 import Link from 'next/link'
 import styles from './DiscoverItem.module.scss'
 
-import Avatar from '@/components/UI/Avatar/Avatar'
+import { Avatar } from '@/components/UI/Avatar/Avatar'
 import { IDiscoverVideo } from './DiscoverItem.interface'
-import { fromatNumber } from '@/utils/formatNumber'
+import { formatNumber } from '@/utils/formatNumber'
 
 import dayjs from 'dayjs'
 import realativeTime from 'dayjs/plugin/relativeTime'
 
-const DiscoverVideo: FC<IDiscoverVideo> = ({
+export const DiscoverItem: FC<IDiscoverVideo> = ({
 	type,
-	video: { id, previewUrl, title, user, views, publicationDate, duration }
+	video: { id, title, previewPath, views, duration, createdAt, user }
 }) => {
 	dayjs.extend(realativeTime)
-
 	return (
 		<div
 			className={`${
 				type === 'most popular' ? styles.mostPopular : styles.random
 			}`}
 		>
-			<img
-				src={`//img.youtube.com/vi/${previewUrl}/maxresdefault.jpg`}
-				alt='Random video'
-			/>
+			<img src={previewPath} alt='Random video' />
 			<div className={styles.content}>
 				<Link href={`/video/${id}`}>
 					<h1>{title}</h1>
-					<Avatar
-						type='default'
-						imageUrl={`http://drive.google.com/uc?export=view&id=1${user.photo}`}
-					/>
-					<h2>{user.name}</h2>
-					<h3>{fromatNumber(views)} views</h3>
-					<h3>{dayjs(new Date(publicationDate)).fromNow()}</h3>
+					<Avatar type='default' imagePath={user?.avatarPath} />
+					<h2 onClick={event => event.stopPropagation()}>
+						<Link href={`/my-subscriptions/${user?.id}`}>{user?.name}</Link>
+					</h2>
+					<h3>{formatNumber(views)} views</h3>
+					<h3>{dayjs(new Date(createdAt || '00.00.0000')).fromNow()}</h3>
 				</Link>
 			</div>
 			<h4>{duration} мин.</h4>
 		</div>
 	)
 }
-
-export default DiscoverVideo

@@ -1,5 +1,3 @@
-import { IUserComments } from '@/types/video.interface'
+export interface ICommentItem {
 
-type IUserId = { userId: string }
-
-export type ICommentItem = IUserComments & IUserId
+}

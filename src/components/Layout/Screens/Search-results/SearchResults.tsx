@@ -1,25 +1,24 @@
 import { FC } from 'react'
 import styles from './SearchResults.module.scss'
 
-import Catalog from '../Home/Catalog/Catalog'
+import { Catalog } from '../Home/Catalog/Catalog'
 
-import { useApi } from '@/hooks/useApi'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { videoApi } from '@/store/api/video.api'
 
-const SearchResults: FC = () => {
+export const SearchResults: FC = () => {
 	const { searchValue } = useTypedSelector(state => state.search)
-	const { videos } = useApi.getAllVideos()
-	const foundVideos = videos?.filter(
-		video =>
-			video.user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-			video.title.toLowerCase().includes(searchValue.toLowerCase())
-	)
+	const { data: foundVideos } = videoApi.useGetAllVideosQuery(searchValue)
 
 	return (
 		<div>
-			<Catalog videos={foundVideos} />
+			{foundVideos?.length !== 0 ? (
+				<Catalog videos={foundVideos} />
+			) : (
+				<div className={styles.notFound}>
+					По запросу: "{searchValue}" ничего не найденно!
+				</div>
+			)}
 		</div>
 	)
 }
-
-export default SearchResults

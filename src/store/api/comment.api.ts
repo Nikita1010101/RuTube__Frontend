@@ -1,37 +1,31 @@
-import { userApi } from './user.api'
 import { IComment } from '@/types/comment.interface'
+
+import { userApi } from './user.api'
 
 export const commentApi = userApi.injectEndpoints({
 	endpoints: builder => ({
-		getCommentById: builder.query<IComment[], any>({
-			query: id => `/comments/${id}`,
-			providesTags: [{ type: 'Comment' }]
+		getCommentsById: builder.query<IComment[], number>({
+			query: (videoId: number) => `/comment/${videoId}`,
+			providesTags: ['Comment']
 		}),
 
-		addComment: builder.mutation<
-			IComment,
-			Partial<IComment> & Pick<IComment, 'id'>
-		>({
-			query: ({ ...body }) => ({
-				url: '/comments',
+		createComment: builder.mutation<any, IComment>({
+			query: body => ({
+				url: '/comment',
 				method: 'POST',
 				body
 			}),
-			invalidatesTags: [{ type: 'Comment' }]
+			invalidatesTags: ['Video', 'Comment']
 		}),
 
-		editComment: builder.mutation<
-			IComment,
-			Partial<IComment> & Pick<IComment, 'id'>
-		>({
-			query: ({ id, ...body }) => ({
-				url: `/comments/${id}`,
-				method: 'PUT',
+		removeComment: builder.mutation<any, IComment>({
+			query: body => ({
+				url: `/comment`,
+				method: 'DELETE',
 				body
 			}),
 
-			invalidatesTags: [{ type: 'Comment' }]
+			invalidatesTags: ['Video', 'Comment']
 		})
-    
 	})
 })

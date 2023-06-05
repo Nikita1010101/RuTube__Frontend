@@ -1,8 +1,10 @@
 .avatar {
-	img {
+	img,
+	svg {
 	}
 	&.default {
-		img {
+		img,
+		svg {
 			@apply mb-2 rounded-3xl;
 			min-width: 45px;
 			min-height: 45px;
@@ -14,7 +16,8 @@
 		}
 	}
 	&.profile {
-		img {
+		img,
+		svg {
 			@apply rounded-3xl;
 			min-width: 40px;
 			min-height: 40px;
@@ -26,7 +29,8 @@
 		}
 	}
 	&.subscription {
-		img {
+		img,
+		svg {
 			@apply rounded-xl;
 			min-width: 40px;
 			min-height: 40px;
@@ -38,7 +42,8 @@
 		}
 	}
 	&.comment {
-		img {
+		img,
+		svg {
 			@apply mb-2 rounded-3xl;
 			min-width: 30px;
 			min-height: 30px;

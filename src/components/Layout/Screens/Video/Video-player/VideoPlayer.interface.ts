@@ -2,6 +2,7 @@ import { RefObject } from 'react'
 import { IVideoElement } from '../Video.interface'
 
 export interface IVideoPlayer {
+	videoId?: number
 	previewUrl: string
 	videoUrl: string
 	videoRef: React.RefObject<IVideoElement>

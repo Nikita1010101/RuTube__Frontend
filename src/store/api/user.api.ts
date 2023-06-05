@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
+
+import { IEditProfile, ISubscription, IUser } from '@/types/user.interface'
+
 import { API_URL } from '../../api/axios'
-import { IUser } from '@/types/user.interface'
 
 export const userApi = createApi({
 	reducerPath: 'api',
@@ -10,32 +12,70 @@ export const userApi = createApi({
 	tagTypes: ['User', 'Video', 'Comment'],
 	endpoints: builder => ({
 		getAllUsers: builder.query<IUser[], any>({
-			query: () => '/users',
-			providesTags: [{ type: 'User' }]
+			query: () => '/user',
+			providesTags: ['User']
 		}),
 
-		getUserById: builder.query<IUser, string>({
-			query: (id: string) => `/users/${id}`,
-			providesTags: [{ type: 'User' }]
+		getUserById: builder.query<IUser, number>({
+			query: (userId: number) => `/user/login/${userId}`,
+			providesTags: ['User']
 		}),
 
-		updateUser: builder.mutation<IUser, Partial<IUser> & Pick<IUser, 'id'>>({
-			query: ({ id, ...body }) => ({
-				url: `/users/${id}`,
-				method: 'PUT',
+		editProfile: builder.mutation<IUser, IEditProfile>({
+			query: body => ({
+				url: '/user/edit',
+				method: 'PATCH',
 				body
 			}),
-			invalidatesTags: [{ type: 'User' }]
+			invalidatesTags: ['User']
 		}),
 
-		addUser: builder.mutation<IUser, Partial<IUser> & Pick<IUser, 'id'>>({
-			query: ({ ...body }) => ({
-				url: `/users`,
+		createUser: builder.mutation<IUser, Partial<IUser>>({
+			query: body => ({
+				url: `/user/register`,
 				method: 'POST',
 				body
 			}),
-			invalidatesTags: [{ type: 'User' }]
+			invalidatesTags: ['User']
+		}),
+
+		getAllSubscriptions: builder.query<IUser[], number>({
+			query: (userId: number) => `/user/subscriptions/${userId}`,
+			providesTags: ['User']
+		}),
+
+		getSubscriptionById: builder.query<IUser, Partial<number>>({
+			query: (userId: number) => `/user/subscription/${userId}`,
+			providesTags: ['User']
+		}),
+
+		checkSubscription: builder.query<boolean, ISubscription>({
+			query: ({ userId, channelId }) =>
+				`/user/subscriptions?userId=${userId}&channelId=${channelId}`,
+			providesTags: ['User']
+		}),
+
+		getSubscripionsLength: builder.query<number, number>({
+			query: (userId: number) => `/user/subscriptions-length/${userId}`,
+			providesTags: ['User']
+		}),
+
+		addSubscription: builder.mutation<any, ISubscription>({
+			query: body => ({
+				url: '/user/subscription',
+				method: 'POST',
+				body
+			}),
+			invalidatesTags: ['User', 'Video']
+		}),
+
+		removeSubscription: builder.mutation<any, ISubscription>({
+			query: body => ({
+				url: '/user/subscription',
+				method: 'DELETE',
+				body
+			}),
+			invalidatesTags: ['User', 'Video']
 		})
-		
 	})
 })

@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import styles from './RegisterForm.module.scss'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 
 import { useAuth } from '@/hooks/useAuth'
 
-const RegisterForm: FC = () => {
+export const RegisterForm: FC = () => {
 	const [isRegistration, setIsRegistration] = useState<boolean>(false)
 	const { register, login } = useAuth()
 	const {
@@ -17,9 +17,12 @@ const RegisterForm: FC = () => {
 		email,
 		password
 	}) => {
-		isRegistration
-			? register?.(fullName, email, password)
-			: login?.(email, password)
+		console.log(isRegistration)
+		if (isRegistration) {
+			register?.(fullName, email, password)
+		} else {
+			login?.(email, password)
+		}
 	}
 	return (
 		<div
@@ -36,7 +39,7 @@ const RegisterForm: FC = () => {
 						{...inputRegister('fullName', {
 							required: true,
 							pattern:
-								/^(?=(?:[^A-Z]*[A-Z]){2,}[^A-Z]*$)(?=(?:[^a-z]*[a-z]){2,40}[^a-z]*$)(?=(?:\D*\d){0,10}\D*$).+$/m
+								/^(?=(?:[^A-Z]*[A-Z]){0,}[^A-Z]*$)(?=(?:[^a-z]*[a-z]){0,40}[^a-z]*$)^(?=(?:[^А-Я]*[А-Я]){0,}[^А-Я]*$)(?=(?:[^а-я]*[а-я]){0,40}[^а-я]*$)(?=(?:\D*\d){0,10}\D*$).+$/m
 						})}
 					/>
 				)}
@@ -70,5 +73,3 @@ const RegisterForm: FC = () => {
 		</div>
 	)
 }
-
-export default RegisterForm

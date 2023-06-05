@@ -4,7 +4,7 @@ import styles from './DiscoverLoader.module.scss'
 
 import { IDiscoverLoader } from './DiscoverLoader.interface'
 
-const DiscoverLoader: FC<IDiscoverLoader> = ({ type }) => {
+export const DiscoverLoader: FC<IDiscoverLoader> = ({ type }) => {
 	return (
 		<>
 			<div
@@ -57,5 +57,3 @@ const DiscoverLoader: FC<IDiscoverLoader> = ({ type }) => {
 		</>
 	)
 }
-
-export default DiscoverLoader

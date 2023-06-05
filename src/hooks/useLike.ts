@@ -1,28 +1,32 @@
-import { useApi } from "./useApi"
-import { useAuth } from "./useAuth"
+import { IUseLike } from '@/types/hook.interface'
+import { videoApi } from '@/store/api/video.api'
 
-export const useLike = (id: string) => {
-  const { profile } = useAuth()
-	const { video } = useApi.getVideoById(id)
-	const { updateVideo, isLoading } = useApi.updateVideo()
+import { useAuth } from './useAuth'
 
-	const isLike = video?.likes.some(id => profile?.id === id)
+export const useLike = (userId: number = 0, videoId: number = 0): IUseLike => {
+	const body = { userId, videoId }
 
-	const updateLike = () => {
+	const { profile } = useAuth()
+	const { data: isLike } = videoApi.useCheckLikeQuery({ userId, videoId })
+	const [addLike, { isLoading: addLoading }] = videoApi.useAddLikeMutation()
+	const [removeLike, { isLoading: removeLoading }] =
+		videoApi.useRemoveLikeMutation()
+
+	let isLoading: boolean = addLoading || removeLoading
+
+	console.log(isLike)
+
+	const updateLike = async (): Promise<void> => {
 		if (profile) {
-			let updatedVideo = Object.assign({}, video)
-
 			if (isLike) {
-				updatedVideo.likes = updatedVideo.likes.filter(
-					likeId => profile?.id !== likeId
-				)
+				removeLike(body)
 			} else {
-				updatedVideo.likes = [...updatedVideo.likes, String(profile?.id)]
+				addLike(body)
 			}
-
-			updateVideo(updatedVideo)
+		} else {
+			alert('Для того чтобы поставить лайк, вам необходимо авторизироваться!')
 		}
 	}
 
-  return { updateLike, isLoading, isLike }
+	return { updateLike, isLoading, isLike }
 }

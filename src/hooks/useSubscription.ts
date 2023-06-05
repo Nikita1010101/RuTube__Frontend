@@ -1,41 +1,38 @@
-import { IUser } from '@/types/user.interface'
+import { IUseSubscription } from '@/types/hook.interface'
+
+import { userApi } from '@/store/api/user.api'
+
 import { useAuth } from './useAuth'
-import { useApi } from './useApi'
 
-export const useSubscription = (user?: IUser) => {
+export const useSubscription = (
+	userId: number,
+	channelId: number
+): IUseSubscription => {
+	const body = { userId, channelId }
+
 	const { profile } = useAuth()
-	const { updateUser, isLoading } = useApi.updateUser()
+	const { data: isSubscribe } = userApi.useCheckSubscriptionQuery({
+		userId,
+		channelId
+	})
+	const [addSubscription, { isLoading: addLoading }] =
+		userApi.useAddSubscriptionMutation()
+	const [removeSubscription, { isLoading: removeLoading }] =
+		userApi.useRemoveSubscriptionMutation()
 
-	const isSubscribe = profile?.subscriptions.some(
-		subscribeId => user?.id === subscribeId
-	)
-	const updateSubscription = () => {
+	let isLoading: boolean = addLoading || removeLoading
+
+	const updateSubscription = (): void => {
 		if (profile) {
-			let updatedUser = Object.assign({}, user)
-			let updateProfile = Object.assign({}, profile)
-
 			if (isSubscribe) {
-				updateProfile.subscriptions = updateProfile.subscriptions.filter(
-					subscribeId => user?.id !== subscribeId
-				)
-				updatedUser.subscribers = updatedUser.subscribers.filter(
-					subscribeId => profile?.id !== subscribeId
-				)
+				removeSubscription(body)
 			} else {
-				updateProfile.subscriptions = [
-					...updateProfile?.subscriptions,
-					String(user?.id)
-				]
-				updatedUser.subscribers = [
-					...updatedUser.subscribers,
-					String(profile?.id)
-				]
+				addSubscription(body)
 			}
-
-			setTimeout(() => {
-				updateUser(updateProfile)
-			}, 100)
-			updateUser(updatedUser)
+		} else {
+			alert(
+				'Для того чтобы подписаться на канал, вам необходимо авторизироваться!'
+			)
 		}
 	}
 

@@ -3,17 +3,29 @@ import styles from './Comments.module.scss'
 
 import { IoMdSend } from 'react-icons/io'
 
-import CommentItem from './Comment-item/CommentItem'
+import { CommentItem } from './Comment-item/CommentItem'
 import { IComments } from './Comments.interface'
-import { useAddCommment } from '@/hooks/useAddComment'
 
-const Comments: FC<IComments> = ({ id, inputRef, comments }) => {
+import { useComment } from '@/hooks/useComment'
+
+export const Comments: FC<IComments> = ({
+	avatarPath,
+	userName,
+	videoId,
+	inputRef,
+	comments
+}) => {
 	const [inputValue, setInputValue] = useState<string>('')
-	const { addComment, isLoading } = useAddCommment(id)
+	const { addComment, isLoading } = useComment(
+		avatarPath,
+		userName,
+		inputValue,
+		videoId
+	)
 
-	const additionComment = () => {
+	const additionComment = (): void => {
 		if (inputValue) {
-			addComment(inputValue)
+			addComment()
 			setInputValue('')
 		}
 	}
@@ -24,7 +36,7 @@ const Comments: FC<IComments> = ({ id, inputRef, comments }) => {
 			<div className={styles.line}></div>
 			<div className={styles.content}>
 				{comments?.map((comment, ind) => (
-					<CommentItem key={ind} userId={id} {...comment} />
+					<CommentItem key={ind} {...comment} />
 				))}
 			</div>
 			<div className={styles.input}>
@@ -43,5 +55,3 @@ const Comments: FC<IComments> = ({ id, inputRef, comments }) => {
 		</div>
 	)
 }
-
-export default Comments

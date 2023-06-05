@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import styles from './Navbar.module.scss'
 
-import Logo from './Logo/Logo'
-import SearchInput from './Search-input/SearchInput'
-import Profile from './Profile/Profile'
+import { Logo } from './Logo/Logo'
+import { SearchInput } from './Search-input/SearchInput'
+import { Profile } from './Profile/Profile'
 
-const Navbar: FC = () => {
+export const Navbar: FC = () => {
 	return (
 		<nav className={styles.navbar}>
 			<Logo />
@@ -14,5 +14,3 @@ const Navbar: FC = () => {
 		</nav>
 	)
 }
-
-export default Navbar

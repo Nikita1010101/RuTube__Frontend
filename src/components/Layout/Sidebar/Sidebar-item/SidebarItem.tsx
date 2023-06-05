@@ -7,7 +7,12 @@ import { ISidebarRoutes } from '../Sidebar.interface'
 
 import { useRouter } from 'next/router'
 
-const SidebarItem: FC<ISidebarRoutes> = ({ title, route, picture, size }) => {
+export const SidebarItem: FC<ISidebarRoutes> = ({
+	title,
+	route,
+	picture,
+	size
+}) => {
 	const { asPath } = useRouter()
 	return (
 		<Link title={title} href={route}>
@@ -30,5 +35,3 @@ const SidebarItem: FC<ISidebarRoutes> = ({ title, route, picture, size }) => {
 		</Link>
 	)
 }
-
-export default SidebarItem

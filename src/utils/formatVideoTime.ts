@@ -1,4 +1,4 @@
-export const formatVideoTime = (time: number) => {
+export const formatVideoTime = (time: number): string => {
 	let hours: number = 0,
 		minutes: number = 0,
 		seconds: number = 0

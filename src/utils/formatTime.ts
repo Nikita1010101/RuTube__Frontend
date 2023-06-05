@@ -1,4 +1,4 @@
-export const formatTime = (num: number) => {
+export const formatTime = (num: number): string => {
 	let time = 0
 
 	if (Number.isInteger(num)) time = num

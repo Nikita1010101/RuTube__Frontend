@@ -14,16 +14,6 @@
 			}
 		}
 		.avatar {
-			svg {
-				@apply rounded-3xl;
-				min-width: 45px;
-				min-height: 45px;
-				max-width: 45px;
-				max-height: 45px;
-				border: 3.5px solid transparent;
-				outline: 2px solid #888;
-				box-shadow: 0 0 2px white;
-			}
 		}
 		.profile {
 			@apply flex items-center;
@@ -42,7 +32,7 @@
 			}
 			> div {
 				@apply fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center invisible opacity-0 z-10;
-				transition: all .3s ease-in-out;
+				transition: all 0.3s ease-in-out;
 				&.active {
 					@apply visible opacity-100;
 				}

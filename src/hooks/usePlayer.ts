@@ -1,7 +1,9 @@
-import { IVideoElement } from '@/components/Layout/Screens/Video/Video.interface'
 import { useEffect, useState, useRef, useCallback } from 'react'
 
-export const usePlayer = () => {
+import { IVideoElement } from '@/components/Layout/Screens/Video/Video.interface'
+import { IUsePlayer } from '@/types/hook.interface'
+
+export const usePlayer = (): IUsePlayer => {
 	const videoRef = useRef<IVideoElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -107,9 +109,9 @@ export const usePlayer = () => {
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown),
-			inputRef.current?.addEventListener('keydown', event => {
-				event.stopPropagation()
-			})
+				inputRef.current?.addEventListener('keydown', event => {
+					event.stopPropagation()
+				})
 		}
 	}, [toggleVideo])
 

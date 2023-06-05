@@ -1,8 +1,8 @@
 import React from 'react'
-import MyChannel from '@/components/Layout/Screens/My-channel/MyChannel'
-import { NextPageAuth } from '@/types/page.interface'
+import { MyChannel } from '@/components/Layout/Screens/My-channel/MyChannel'
+import { TNextPageAuth } from '@/types/page.interface'
 
-const MyChannelPage: NextPageAuth = () => {
+const MyChannelPage: TNextPageAuth = () => {
 	return <MyChannel />
 }
 
