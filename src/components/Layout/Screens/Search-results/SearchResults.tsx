@@ -16,7 +16,7 @@ export const SearchResults: FC = () => {
 				<Catalog videos={foundVideos} />
 			) : (
 				<div className={styles.notFound}>
-					По запросу: "{searchValue}" ничего не найденно!
+					{'По запросу: "{searchValue}" ничего не найденно!'}
 				</div>
 			)}
 		</div>

@@ -1,5 +1,7 @@
 import { FC } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
+import cn from 'classnames'
 import styles from './DiscoverItem.module.scss'
 
 import { Avatar } from '@/components/UI/Avatar/Avatar'
@@ -16,11 +18,18 @@ export const DiscoverItem: FC<IDiscoverVideo> = ({
 	dayjs.extend(realativeTime)
 	return (
 		<div
-			className={`${
-				type === 'most popular' ? styles.mostPopular : styles.random
-			}`}
+			className={cn({
+				[styles.mostPopular]: type === 'most popular',
+				[styles.random]: type === 'random'
+			})}
 		>
-			<img src={previewPath} alt='Random video' />
+			<Image
+				src={previewPath}
+				width={1600}
+				height={900}
+				alt={'Видео'}
+				quality={100}
+			/>
 			<div className={styles.content}>
 				<Link href={`/video/${id}`}>
 					<h1>{title}</h1>

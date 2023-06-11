@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios'
 
 export const UserService = {
 	async getAll(): Promise<AxiosResponse<IUser[]>> {
-		return axiosClassic.get<any, AxiosResponse<IUser[]>>('/user')
+		return axiosClassic.get<null, AxiosResponse<IUser[]>>('/user')
 	},
 
 	async getById(id: number): Promise<AxiosResponse<IUser>> {

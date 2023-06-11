@@ -9,7 +9,7 @@ export const commentApi = userApi.injectEndpoints({
 			providesTags: ['Comment']
 		}),
 
-		createComment: builder.mutation<any, IComment>({
+		createComment: builder.mutation<null, IComment>({
 			query: body => ({
 				url: '/comment',
 				method: 'POST',
@@ -18,7 +18,7 @@ export const commentApi = userApi.injectEndpoints({
 			invalidatesTags: ['Video', 'Comment']
 		}),
 
-		removeComment: builder.mutation<any, IComment>({
+		removeComment: builder.mutation<null, IComment>({
 			query: body => ({
 				url: `/comment`,
 				method: 'DELETE',

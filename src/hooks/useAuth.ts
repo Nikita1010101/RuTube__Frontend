@@ -5,9 +5,7 @@ import { useLocalStorage } from './useLocalStorage'
 
 import { UserService } from '@/services/user.service'
 
-export const useAuth = (): Partial<TUseAuth> => {
-	if (typeof window === 'undefined') return {}
-
+export const useAuth = (): TUseAuth => {
 	const { storageValue, setValue } = useLocalStorage('AuthId', 0)
 
 	const { data: profile, isLoading } = userApi.useGetUserByIdQuery(

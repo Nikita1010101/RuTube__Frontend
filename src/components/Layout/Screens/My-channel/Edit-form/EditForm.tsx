@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import cn from 'classnames'
 import styles from './EditForm.module.scss'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
@@ -27,7 +28,7 @@ export const EditForm: FC = () => {
 					defaultValue={profile?.name}
 					type='text'
 					placeholder='Полное имя'
-					className={errors.name && styles.active}
+					className={cn({ [styles.active]: errors.name })}
 					{...inputRegister('name', {
 						required: true,
 						pattern:

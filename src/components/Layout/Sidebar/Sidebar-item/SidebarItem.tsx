@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import cn from 'classnames'
 import styles from './SidebarItem.module.scss'
 
 import { ISidebarRoutes } from '../Sidebar.interface'
@@ -17,9 +18,9 @@ export const SidebarItem: FC<ISidebarRoutes> = ({
 	return (
 		<Link title={title} href={route}>
 			<div
-				className={`${styles.sidebarItem} ${
-					route === asPath ? styles.active : ''
-				}`}
+				className={cn(styles.sidebarItem, {
+					[styles.active]: route === asPath
+				})}
 			>
 				<div>
 					<Image
@@ -28,6 +29,7 @@ export const SidebarItem: FC<ISidebarRoutes> = ({
 						height={size}
 						alt={title}
 						style={{ minHeight: `${size}`, minWidth: `${size}` }}
+						quality={100}
 					/>
 				</div>
 				<h2>{title}</h2>

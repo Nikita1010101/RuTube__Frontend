@@ -8,10 +8,10 @@ const nextConfig = {
 	swcMinify: true,
 	poweredByHeader: false,
 	env: {
-		APP_URL: process.env.REACT_APP_URL
+		APP_API: process.env.APP_API
 	},
 	images: {
-		domains: ['localhost', '127.0.0.1', 'yt3.ggpht.com/']
+		domains: ['img.youtube.com', 'drive.google.com']
 	}
 }
 

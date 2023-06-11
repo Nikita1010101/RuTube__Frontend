@@ -1,8 +1,12 @@
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, ComponentProps } from 'react'
 import dynamic from 'next/dynamic'
+
+import { CheckRolesProvider } from './CheckRolesProvider'
 import { TComponentAuthFields } from '@/types/page.interface'
 
-const DinamicCheckRole = dynamic(() => import('./CheckRoles'), {
+const DinamicCheckRoleProvider = dynamic<
+	ComponentProps<typeof CheckRolesProvider>
+>(() => import('./CheckRolesProvider').then(res => res.CheckRolesProvider), {
 	ssr: false
 })
 
@@ -13,6 +17,8 @@ export const AuthProvider: FC<PropsWithChildren<TComponentAuthFields>> = ({
 	return !isOnlyUser ? (
 		<>{children}</>
 	) : (
-		<DinamicCheckRole Component={{ isOnlyUser }}>{children}</DinamicCheckRole>
+		<DinamicCheckRoleProvider Component={{ isOnlyUser }}>
+			{children}
+		</DinamicCheckRoleProvider>
 	)
 }

@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from './CatalogItem.module.scss'
 
 import { Avatar } from '@/components/UI/Avatar/Avatar'
@@ -26,7 +27,13 @@ export const CatalogItem: FC<IVideo> = ({
 
 	return (
 		<div className={styles.catalogItem} title={title}>
-			<img src={previewPath} alt='Video' />
+			<Image
+				src={previewPath}
+				width={400}
+				height={225}
+				alt={'Видео'}
+				quality={100}
+			/>
 			<div className={styles.content}>
 				<Link href={`/video/${id}`}>
 					<h2 onClick={event => event.stopPropagation}>

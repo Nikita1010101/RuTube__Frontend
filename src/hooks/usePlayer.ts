@@ -101,7 +101,9 @@ export const usePlayer = (): IUsePlayer => {
 			}
 		}
 
-		inputRef.current?.addEventListener('keydown', event => {
+		const input = inputRef.current
+
+		input?.addEventListener('keydown', event => {
 			event.stopPropagation()
 		})
 
@@ -109,7 +111,7 @@ export const usePlayer = (): IUsePlayer => {
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown),
-				inputRef.current?.addEventListener('keydown', event => {
+				input?.addEventListener('keydown', event => {
 					event.stopPropagation()
 				})
 		}

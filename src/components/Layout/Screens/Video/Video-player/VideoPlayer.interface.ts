@@ -1,4 +1,3 @@
-import { RefObject } from 'react'
 import { IVideoElement } from '../Video.interface'
 
 export interface IVideoPlayer {

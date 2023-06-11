@@ -6,32 +6,32 @@ import { commentApi } from '@/store/api/comment.api'
 import { useAuth } from './useAuth'
 
 export const useComment = (
-	avatarPath: string = '',
-	userName: string = '',
-	content: string = '',
-	videoId: number = 0
+  avatarPath = '',
+  userName = '',
+  content = '',
+  videoId = 0
 ): IUseComment => {
-	const body: IComment = { avatarPath, userName, content, videoId }
+  const body: IComment = { avatarPath, userName, content, videoId }
 
-	const { profile } = useAuth()
-	const [createComment, { isLoading: addLoading }] =
-		commentApi.useCreateCommentMutation()
-	const [removeComment, { isLoading: removeLoading }] =
-		commentApi.useRemoveCommentMutation()
+  const { profile } = useAuth()
+  const [createComment, { isLoading: addLoading }] =
+    commentApi.useCreateCommentMutation()
+  const [removeComment, { isLoading: removeLoading }] =
+    commentApi.useRemoveCommentMutation()
 
-	let isLoading: boolean = addLoading || removeLoading
+  const isLoading: boolean = addLoading || removeLoading
 
-	const addComment = (): void => {
-		if (profile) {
-			createComment(body)
-		} else {
-			alert('Для написания комментария, вам необходимо авторизироваться!')
-		}
-	}
+  const addComment = (): void => {
+    if (profile) {
+      createComment(body)
+    } else {
+      alert('Для написания комментария, вам необходимо авторизироваться!')
+    }
+  }
 
-	const deleteComment = (): void => {
-		removeComment(body)
-	}
+  const deleteComment = (): void => {
+    removeComment(body)
+  }
 
-	return { addComment, deleteComment, isLoading }
+  return { addComment, deleteComment, isLoading }
 }

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import cn from 'classnames'
 import ContentLoader from 'react-content-loader'
 import styles from './DiscoverLoader.module.scss'
 
@@ -8,9 +9,10 @@ export const DiscoverLoader: FC<IDiscoverLoader> = ({ type }) => {
 	return (
 		<>
 			<div
-				className={`${styles.discoverLoader} ${
-					type === 'most popular' ? styles.mostPopular : styles.random
-				}`}
+				className={cn(styles.discoverLoader, {
+					[styles.mostPopular]: type === 'most popular',
+					[styles.random]: type === 'random'
+				})}
 			>
 				{type === 'most popular' ? (
 					<>

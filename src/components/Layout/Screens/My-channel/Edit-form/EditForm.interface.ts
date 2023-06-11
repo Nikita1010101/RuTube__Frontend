@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
 
 export interface IEditForm {
-	setIsEditForm: Dispatch<SetStateAction<Boolean>>
+	setIsEditForm: Dispatch<SetStateAction<boolean>>
 }

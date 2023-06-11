@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import cn from 'classnames'
 import styles from './SubscribeButton.module.scss'
 
 import { FaUserPlus } from 'react-icons/fa'
@@ -21,9 +22,10 @@ export const SubscribeButton: FC<ISubscribeButton> = ({ user }) => {
 	return (
 		<div
 			onClick={throttle}
-			className={`${styles.btnSubscribe} ${
-				isSubscribe ? styles.subscribed : ''
-			} ${isLoading ? styles.loading : ''} `}
+			className={cn(styles.btnSubscribe, {
+				[styles.subscribed]: isSubscribe,
+				[styles.loading]: isLoading
+			})}
 			title={isSubscribe ? 'Отписаться' : 'Подписаться'}
 		>
 			<FaUserPlus />

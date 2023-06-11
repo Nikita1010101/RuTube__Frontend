@@ -5,10 +5,9 @@ import { TComponentAuthFields } from '@/types/page.interface'
 
 import { useAuth } from '@/hooks/useAuth'
 
-const CheckRoles: FC<PropsWithChildren<TComponentAuthFields>> = ({
-	children,
-	Component: { isOnlyUser }
-}) => {
+export const CheckRolesProvider: FC<
+	PropsWithChildren<TComponentAuthFields>
+> = ({ children, Component: { isOnlyUser } }) => {
 	const { pathname, replace } = useRouter()
 	const { profile, isLoading } = useAuth()
 
@@ -22,5 +21,3 @@ const CheckRoles: FC<PropsWithChildren<TComponentAuthFields>> = ({
 
 	return null
 }
-
-export default CheckRoles

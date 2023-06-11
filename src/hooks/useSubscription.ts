@@ -20,7 +20,7 @@ export const useSubscription = (
 	const [removeSubscription, { isLoading: removeLoading }] =
 		userApi.useRemoveSubscriptionMutation()
 
-	let isLoading: boolean = addLoading || removeLoading
+	const isLoading: boolean = addLoading || removeLoading
 
 	const updateSubscription = (): void => {
 		if (profile) {

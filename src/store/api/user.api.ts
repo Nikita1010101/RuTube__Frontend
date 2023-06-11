@@ -2,16 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 import { IEditProfile, ISubscription, IUser } from '@/types/user.interface'
 
-import { API_URL } from '../../api/axios'
-
 export const userApi = createApi({
 	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({
-		baseUrl: API_URL
+		baseUrl: process.env.APP_API
 	}),
 	tagTypes: ['User', 'Video', 'Comment'],
 	endpoints: builder => ({
-		getAllUsers: builder.query<IUser[], any>({
+		getAllUsers: builder.query<IUser[], null>({
 			query: () => '/user',
 			providesTags: ['User']
 		}),
@@ -60,7 +58,7 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
-		addSubscription: builder.mutation<any, ISubscription>({
+		addSubscription: builder.mutation<null, ISubscription>({
 			query: body => ({
 				url: '/user/subscription',
 				method: 'POST',
@@ -69,7 +67,7 @@ export const userApi = createApi({
 			invalidatesTags: ['User', 'Video']
 		}),
 
-		removeSubscription: builder.mutation<any, ISubscription>({
+		removeSubscription: builder.mutation<null, ISubscription>({
 			query: body => ({
 				url: '/user/subscription',
 				method: 'DELETE',
