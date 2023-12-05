@@ -1,5 +1,5 @@
 import { ICreateUser, IGetProfile, IUser } from '@/types/user.interface'
-import { axiosClassic } from 'api/axios'
+import { axiosClassic } from '@/api/axios'
 import { AxiosResponse } from 'axios'
 
 export const UserService = {

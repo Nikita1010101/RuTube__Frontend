@@ -1,7 +1,7 @@
-import mainIcon from '@/assets/img/mainIcon.png'
-import trandingIcon from '@/assets/img/trandingIcon.png'
-import starIcon from '@/assets/img/starIcon.png'
-import subscriptionsIcon from '@/assets/img/subscriptionsIcon.png'
+import mainIcon from '@/public/img/mainIcon.png'
+import trandingIcon from '@/public/img/trandingIcon.png'
+import starIcon from '@/public/img/starIcon.png'
+import subscriptionsIcon from '@/public/img/subscriptionsIcon.png'
 import { ISidebarRoutes } from "./Sidebar.interface";
 
 
@@ -22,14 +22,14 @@ export const privateRoutes: ISidebarRoutes[] = [
   },
   {
     id: '3',
-    route: '/my-channel',
+    route: '/profile',
     title: 'Мой канал',
     picture: starIcon,
     size: 14
   },
   {
     id: '4',
-    route: '/my-subscriptions',
+    route: '/subscription',
     title: 'Мои подписки',
     picture: subscriptionsIcon,
     size: 14

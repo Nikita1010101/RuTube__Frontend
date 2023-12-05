@@ -1,4 +1,4 @@
-import { searchSlice } from './slices/search/search.slice'
+import { searchSlice } from './search/search.slice'
 
 export const rootActions = {
 	...searchSlice.actions

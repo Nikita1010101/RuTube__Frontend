@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, MouseEvent, useState } from 'react'
 import styles from './VideoPlayer.module.scss'
 
@@ -8,7 +10,7 @@ import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { IVideoPlayer } from './VideoPlayer.interface'
 
 import { formatVideoTime } from '@/utils/formatVideoTime'
-import { videoApi } from '@/store/api/video.api'
+import { videoApi } from '@/store/video/video.api'
 
 export const VideoPlayer: FC<IVideoPlayer> = ({
 	videoId,

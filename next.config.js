@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	i18n: {
+  i18n: {
 		locales: ['ru', 'en'],
 		defaultLocale: 'ru',
 	},
@@ -8,7 +8,7 @@ const nextConfig = {
 	swcMinify: true,
 	poweredByHeader: false,
 	env: {
-		APP_API: process.env.APP_API
+		API_URL: process.env.API_URL
 	},
 	images: {
 		domains: ['img.youtube.com', 'drive.google.com']

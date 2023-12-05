@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, useState } from 'react'
 import cn from 'classnames'
 import styles from './Profile.module.scss'
@@ -6,17 +8,17 @@ import { FaUserAlt } from 'react-icons/fa'
 
 import { RegisterForm } from './Register-form/RegisterForm'
 
-import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from 'next/router'
+// import { useAuth } from '@/hooks/useAuth'
+import { usePathname } from 'next/navigation' 
 
 export const Profile: FC = () => {
   const [isForm, setIsForm] = useState(false)
-  const { profile } = useAuth()
-  const { replace } = useRouter()
+  // const { profile } = useAuth()
+  const { replace } = usePathname()
 
   const checkUser = (): void => {
-    if (profile) replace('/my-channel')
-    else setIsForm(true)
+    // if (profile) replace('/my-channel')
+    // else setIsForm(true)
   }
 
   return (
@@ -25,7 +27,7 @@ export const Profile: FC = () => {
         <FaUserAlt
           onClick={checkUser}
           className={styles.avatar}
-          title={profile ? 'Мой канал' : 'Авторизация'}
+          // title={profile ? 'Мой канал' : 'Авторизация'}
         />
       </div>
       <div

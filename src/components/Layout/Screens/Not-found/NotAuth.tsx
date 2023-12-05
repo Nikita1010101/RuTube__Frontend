@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import styles from './NotAuth.module.scss'
 
@@ -13,8 +15,8 @@ export const NotAuth: FC = () => {
 	}, 3000)
 
 	return (
-		<Layout title='Страница не найдена' description='Страница не найдена'>
+		// <Layout title='Страница не найдена' description='Страница не найдена'>
 			<h1 className={styles.title}>Такой страницы не найденно!</h1>
-		</Layout>
+		// </Layout>
 	)
 }

@@ -1,44 +1,30 @@
-import { FC, PropsWithChildren, useEffect } from 'react'
-import Head from 'next/head'
-import cn from 'classnames'
-import styles from './Layout.module.scss'
+'use client'
 
+import React, { FC, PropsWithChildren, ReactNode } from 'react'
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar'
+import styles from './Layout.module.scss'
 import { Navbar } from './Navbar/Navbar'
 import { Sidebar } from './Sidebar/Sidebar'
-import { SearchResults } from './Screens/Search-results/SearchResults'
-import { ILayout } from './Layout.interface'
+import { Provider } from 'react-redux'
+import { store } from '@/store/store'
 
-import { useTypedSelector } from '@/hooks/useTypedSelector'
-import { useRouter } from 'next/router'
-import { useActions } from '@/hooks/useActions'
-import { useAuth } from '@/hooks/useAuth'
-
-export const Layout: FC<PropsWithChildren<ILayout>> = ({
-  children,
-  title,
-  description,
-}) => {
-  const { searchValue } = useTypedSelector((state) => state.search)
-  const { changeSearchValue } = useActions()
-  const { asPath } = useRouter()
-  const { profile } = useAuth()
-
-  useEffect(() => {
-    changeSearchValue('')
-  }, [asPath, changeSearchValue])
-
+export const Layout: FC<PropsWithChildren<{ children: ReactNode }>> = ({ children }) => {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <Navbar />
-      <main className={cn(styles.home, { [styles.isAuth]: profile })}>
-        <Sidebar />
-        {!searchValue ? <>{children}</> : <SearchResults />}
-      </main>
+      <ProgressBar
+        height='3px'
+        color='#29d'
+        delay={200}
+        options={{ showSpinner: false, easing: 'ease', speed: 500 }}
+        shallowRouting
+      />
+      <Provider store={store}>
+        <Navbar />
+        <main className={styles.home}>
+          <Sidebar />
+          {children}
+        </main>
+      </Provider>
     </>
   )
 }

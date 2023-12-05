@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import styles from './Catalog.module.scss'
 
@@ -5,11 +7,11 @@ import { CatalogItemLoader } from '@/components/UI/Skeletons/CatalogItemLoader/C
 import { CatalogItem } from './Catalog-item/CatalogItem'
 import { ICatalog } from './Catalog.interface'
 
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { titlesByPaths } from './Catalog.data'
 
 export const Catalog: FC<ICatalog> = ({ videos }) => {
-	const { pathname } = useRouter()
+	const pathname = usePathname()
 
 	const currentTitle = titlesByPaths.find(item => pathname === item.path)
 

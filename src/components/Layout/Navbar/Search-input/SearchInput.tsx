@@ -1,19 +1,21 @@
+'use client'
+
 import { FC, useEffect, useState } from 'react'
 import styles from './SearchInput.module.scss'
 
 import { BsSearch } from 'react-icons/bs'
 
-import { useActions } from '@/hooks/useActions'
-import { useDebounce } from '@/hooks/useDebounce'
+// import { useActions } from '@/hooks/useActions'
+// import { useDebounce } from '@/hooks/useDebounce'
 
 export const SearchInput: FC = () => {
-  const { changeSearchValue } = useActions()
+  // const { changeSearchValue } = useActions()
   const [inputValue, setInputValue] = useState<string>('')
-  const debounce = useDebounce(inputValue, 200)
+  // const debounce = useDebounce(inputValue, 200)
 
-  useEffect(() => {
-    changeSearchValue(inputValue)
-  }, [debounce, inputValue, changeSearchValue])
+  // useEffect(() => {
+    // changeSearchValue(inputValue)
+  // }, [debounce, inputValue, changeSearchValue])
 
   return (
     <div className={styles.search}>

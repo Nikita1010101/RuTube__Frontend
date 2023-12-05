@@ -1,12 +1,14 @@
+'use client'
+
 import { FC, useState } from 'react'
 import styles from './RegisterForm.module.scss'
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form'
 
-import { useAuth } from '@/hooks/useAuth'
+// import { useAuth } from '@/hooks/useAuth'
 
 export const RegisterForm: FC = () => {
 	const [isRegistration, setIsRegistration] = useState<boolean>(false)
-	const { register, login } = useAuth()
+	// const { register, login } = useAuth()
 	const {
 		register: inputRegister,
 		handleSubmit,
@@ -18,11 +20,11 @@ export const RegisterForm: FC = () => {
 		password
 	}) => {
 		console.log(isRegistration)
-		if (isRegistration) {
-			register?.(fullName, email, password)
-		} else {
-			login?.(email, password)
-		}
+		// if (isRegistration) {
+			// register?.(fullName, email, password)
+		// } else {
+			// login?.(email, password)
+		// }
 	}
 	return (
 		<div

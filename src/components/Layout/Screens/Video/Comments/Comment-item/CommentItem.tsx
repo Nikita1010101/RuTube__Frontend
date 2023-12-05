@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import styles from './CommentItem.module.scss'
 
@@ -7,8 +9,7 @@ import { MdDelete } from 'react-icons/md'
 import { Avatar } from '@/components/UI/Avatar/Avatar'
 import { IComment } from '@/types/comment.interface'
 
-import { useComment } from '@/hooks/useComment'
-import { useAuth } from '@/hooks/useAuth'
+// import { useAuth } from '@/hooks/useAuth'
 
 export const CommentItem: FC<IComment> = ({
 	avatarPath,
@@ -17,12 +18,12 @@ export const CommentItem: FC<IComment> = ({
 	createdAt,
 	videoId
 }) => {
-	const { profile } = useAuth()
-	const { deleteComment } = useComment(avatarPath, userName, content, videoId)
+	// const { profile } = useAuth()
+	// const { deleteComment } = useComment(avatarPath, userName, content, videoId)
 
-	const checkDeleteComment = (): void => {
-		if (confirm('Вы хотите удалить комментарий?')) deleteComment()
-	}
+	// const checkDeleteComment = (): void => {
+	// 	if (confirm('Вы хотите удалить комментарий?')) deleteComment()
+	// }
 
 	const time = createdAt
 		?.split('T')
@@ -54,12 +55,12 @@ export const CommentItem: FC<IComment> = ({
 				<p>{content}</p>
 				<div>
 					<h5>{time}</h5>
-					{profile && (
+					{/* {profile && (
 						<MdDelete
 							onClick={checkDeleteComment}
 							title='Удалить комментарий'
 						/>
-					)}
+					)} */}
 				</div>
 			</div>
 		</div>

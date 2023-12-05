@@ -2,25 +2,3 @@
 	@apply pt-24 grid;
 	grid-template-columns: 1fr 4fr;
 }
-
-@media screen and (max-width: 1200px) {
-	.home {
-		@apply ml-auto block;
-		width: 90%;
-	}
-}
-
-@media screen and (max-width: 992px) {
-	.home {
-		width: 88%;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.home {
-		@apply w-full pt-24 pb-16;
-		&.isAuth {
-			@apply pt-40;
-		}
-	}
-}

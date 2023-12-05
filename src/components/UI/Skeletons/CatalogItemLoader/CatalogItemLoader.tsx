@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import ContentLoader from 'react-content-loader'
 import styles from './CatalogItemLoader.module.scss'
