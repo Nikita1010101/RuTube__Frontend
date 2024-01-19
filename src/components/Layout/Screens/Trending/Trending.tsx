@@ -2,18 +2,20 @@
 
 import { FC } from 'react'
 
-import { Layout } from '@/components/Layout/Layout'
-import { Catalog } from '../Home/Catalog/Catalog'
-
+import { Catalog } from '../../Catalog/Catalog'
 import { videoApi } from '@/store/video/video.api'
+import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
 
-export const Tranding: FC = () => {
-	const { data: videos } = videoApi.useGetAllVideosQuery(null)
-	const popularVideos = videos?.slice().sort((a, b) => b.views - a.views)
+export const Trending: FC = () => {
+  const { data: videos, isLoading } = videoApi.useVideoGetAllQuery({
+    sort: 'popular',
+  })
 
-	return (
-		// <Layout title='Тренды' description='Tranding'>
-			<Catalog videos={popularVideos} />
-		// </Layout>
-	)
+  return (
+    <Catalog
+      videos={videos}
+      isLoading={isLoading}
+      title={CATALOG_TITLES.popular}
+    />
+  )
 }

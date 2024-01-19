@@ -28,10 +28,10 @@ export const VideoPlayer: FC<IVideoPlayer> = ({
 
 	const [viewed, setViewed] = useState<boolean>(false)
 
-	if (status.progress >= 90 && !viewed) {
-		setViewed(true)
-		addView({ id: Number(videoId) })
-	}
+	// if (status.progress >= 90 && !viewed) {
+	// 	setViewed(true)
+	// 	addView({ id: Number(videoId) })
+	// }
 
 	const rewind = (event: MouseEvent<HTMLDivElement>): void => {
 		const parent = event.currentTarget.getBoundingClientRect()
@@ -44,6 +44,7 @@ export const VideoPlayer: FC<IVideoPlayer> = ({
 	return (
 		<div className={styles.player}>
 			<video
+				autoPlay
 				ref={videoRef}
 				poster={previewUrl}
 				onClick={toggleVideo}

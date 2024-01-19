@@ -4,7 +4,7 @@ import { FC } from 'react'
 import styles from './Discover.module.scss'
 
 import { DiscoverLoader } from '@/components/UI/Skeletons/DiscoverLoader/DiscoverLoader'
-import { DiscoverItem } from './Discover-item/DiscoverItem'
+import { DiscoverItem } from './Discover-item/Discover-item'
 import { IDiscover } from './Discover.interface'
 
 export const Discover: FC<IDiscover> = ({ popularVideo, randomVideo }) => {

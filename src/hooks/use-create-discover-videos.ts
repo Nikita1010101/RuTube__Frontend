@@ -1,28 +1,51 @@
-import { ICreateDiscoverVideoIndexes, ICreateDiscoverVideos } from "@/types/hook.interface"
-import { IVideo } from "@/types/video.interface"
+import { TVideo } from '@/types/video.types'
 
-export function useCreateDiscoverVideos(videos: IVideo[] = []) {
+export function useCreateDiscoverVideos(videos: TVideo[] = [], randomId: number) {
   if (videos.length === 0) {
-    return { popularVideo: undefined, randomVideo: undefined } as ICreateDiscoverVideos
+    return { popularVideo: undefined, randomVideo: undefined }
   }
 
-  const indexes: ICreateDiscoverVideoIndexes = {
-    popularVideoIndex: 0,
-    randomVideoIndex: 0,
+  function findPopularVideoIndex() {
+    let popularVideoIndex = 0
+
+    for (let currentIndex = 1; currentIndex < videos.length; currentIndex++) {
+      const maxViewsCount = videos[popularVideoIndex].views
+      const currentViewsCount = videos[currentIndex].views
+
+      if (maxViewsCount <= currentViewsCount) {
+        popularVideoIndex = currentIndex
+      }
+    }
+
+    return popularVideoIndex
   }
 
-  for (let i = 0; i < videos.length; i++) {
-    const popularVideoIndex = indexes.popularVideoIndex
+  const popularVideoIndex = findPopularVideoIndex()
 
-    if (videos[i].views > videos[popularVideoIndex].views) {
-      indexes.popularVideoIndex = i
+  function findRandomVideoIndex() {
+    const countVideos = videos.length
+
+    switch (countVideos) {
+      case 1:
+        return 0
+
+      case 2:
+        return 1 - popularVideoIndex
+
+      default:
+        if (randomId === popularVideoIndex) {
+         const randomVideoIndex = randomId - 1 === -1 ? randomId + 1 : randomId - 1  
+         return randomVideoIndex
+        }
+
+        return randomId
     }
   }
 
-  indexes.randomVideoIndex = indexes.popularVideoIndex === 0 ? 1 : 0
+  const randomVideoIndex = findRandomVideoIndex()
 
-  return {
-    popularVideo: videos[indexes.popularVideoIndex],
-    randomVideo: videos[indexes.randomVideoIndex],
-  } as ICreateDiscoverVideos
+  const popularVideo = videos[popularVideoIndex]
+  const randomVideo = videos[randomVideoIndex]
+
+  return { popularVideo, randomVideo }
 }

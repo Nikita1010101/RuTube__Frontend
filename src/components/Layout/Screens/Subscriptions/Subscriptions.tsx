@@ -2,19 +2,24 @@
 
 import React, { FC } from 'react'
 
-import { Catalog } from '../Home/Catalog/Catalog'
-import { videoApi } from '@/store/video/video.api'
+import { Catalog } from '../../Catalog/Catalog'
+import { likeApi } from '@/store/like/like.api'
+import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
+import { subscriptionApi } from '@/store/subscription/subscription.api'
 
 export const Subscriptions: FC = () => {
-  const { data: videoSubscriptions } = videoApi.useGetSubsciptionVideosQuery(1)
+  const { data: videos, isLoading } =
+    subscriptionApi.useSubscriptionGetVideosQuery(null)
+
+  console.log('🚀 ~ videos:', videos)
 
   return (
     <>
-      {videoSubscriptions?.length === 0 ? (
-        <h1>Список пуст</h1>
-      ) : (
-        <Catalog videos={videoSubscriptions} />
-      )}
+      <Catalog
+        videos={videos}
+        isLoading={isLoading}
+        title={CATALOG_TITLES.subscriptions}
+      />
     </>
   )
 }

@@ -20,13 +20,15 @@
     ],
     "baseUrl": "./",
 		"paths": {
-			"@/public/*": ["public/*"],
 			"@/api/*": ["src/api/*"],
+      "@/assets/*": ["src/assets/*"],
 			"@/components/*": ["src/components/*"],
+      "@/constants/*": ["src/constants/*"],
 			"@/hooks/*": ["src/hooks/*"],
+			"@/public/*": ["public/*"],
 			"@/services/*": ["src/services/*"],
-			"@/types/*": ["src/types/*"],
 			"@/store/*": ["src/store/*"],
+			"@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"]
     }
   },

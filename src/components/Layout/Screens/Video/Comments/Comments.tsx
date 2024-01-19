@@ -3,7 +3,7 @@
 import { FC, useState } from 'react'
 
 import styles from './Comments.module.scss'
-import { CommentItem } from './Comment-item/CommentItem'
+import { CommentItem } from './Comment-item/Comment-item'
 import { IComments } from './Comments.interface'
 import { IoMdSend } from 'react-icons/io'
 

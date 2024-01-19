@@ -1,63 +1,20 @@
 .discover {
-	@apply h-96 mb-10 mx-7 grid rounded-xl overflow-hidden;
-	grid-template-columns: 2fr 1fr;
-	column-gap: 1.5em;
-	> div {
-		@apply relative h-full flex items-center rounded-xl overflow-hidden;
-		> img {
-			transition: all 1.2s ease;
-		}
-		> div {
-			@apply absolute h-full;
-			padding: 8% 0 8% 32px;
-			background: -webkit-linear-gradient(
-				left,
-				rgba(0, 0, 0, 0.75) 0%,
-				rgba(0, 0, 0, 0) 100%
-			);
-			h1 {
-				@apply h-28 text-3xl font-bold overflow-hidden;
-				display: -webkit-box;
-				-webkit-line-clamp: 3;
-				-webkit-box-orient: vertical;
-			}
-			h2 {
-				@apply -mb-1 text-lg font-semibold overflow-hidden;
-				display: -webkit-box;
-				-webkit-line-clamp: 1;
-				-webkit-box-orient: vertical;
-				&:hover {
-					text-decoration: underline
-				}
-			}
-			h3 {
-				@apply inline-block mr-3 text-xs;
-			}
-		}
-		h4 {
-			@apply absolute bottom-3 py-1 px-1.5 bg-black bg-opacity-60 rounded-md text-xs;
-		}
-	}
+  @apply h-96 mb-10 mx-7 grid rounded-xl overflow-hidden;
+
+  grid-template-columns: 2fr 1fr;
+  column-gap: 1.5em;
 }
 
 @media screen and (max-width: 1400px) {
-	.discover {
-		grid-template-columns: 1fr 0;
-		div:first-child {
-			@apply w-full;
-		}
-		div:last-child {
-			@apply hidden;
-		}
-	}
+  .discover {
+    grid-template-columns: 1fr 0;
+  }
 }
 
 @media screen and (max-width: 992px) {
-	.discover {
-		@apply h-0 mb-0;
-		grid-template-columns: 0 0;
-		div:first-child {
-			@apply hidden;
-		}
-	}
+  .discover {
+    @apply h-0 mb-0;
+
+    grid-template-columns: 0 0;
+  }
 }

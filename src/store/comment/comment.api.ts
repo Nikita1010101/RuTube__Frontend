@@ -1,31 +1,39 @@
-import { IComment } from '@/types/comment.interface'
+import { TComment } from '@/types/comment.types'
+import { videoApi } from '@/store/video/video.api'
 
-import { userApi } from '../user/user.api'
+export const commentApi = videoApi.injectEndpoints({
+  endpoints: (builder) => ({
+    commentGetAll: builder.query<TComment[], number>({
+      query: (videoId: number) => `/comment/${videoId}`,
+      providesTags: ['COMMENT'],
+    }),
 
-export const commentApi = userApi.injectEndpoints({
-	endpoints: builder => ({
-		getCommentsById: builder.query<IComment[], number>({
-			query: (videoId: number) => `/comment/${videoId}`,
-			providesTags: ['Comment']
-		}),
+    commentAdd: builder.mutation<null, TComment>({
+      query: (body) => ({
+        url: '/comment/add',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['COMMENT'],
+    }),
 
-		createComment: builder.mutation<null, IComment>({
-			query: body => ({
-				url: '/comment',
-				method: 'POST',
-				body
-			}),
-			invalidatesTags: ['Video', 'Comment']
-		}),
+    commentEdit: builder.mutation<null, TComment>({
+      query: (body) => ({
+        url: `/comment/edit`,
+        method: 'PATCH',
+        body,
+      }),
 
-		removeComment: builder.mutation<null, IComment>({
-			query: body => ({
-				url: `/comment`,
-				method: 'DELETE',
-				body
-			}),
+      invalidatesTags: ['COMMENT'],
+    }),
 
-			invalidatesTags: ['Video', 'Comment']
-		})
-	})
+    commentRemove: builder.mutation<null, TComment>({
+      query: (commentId) => ({
+        url: `/comment/remove/${commentId}`,
+        method: 'DELETE',
+      }),
+
+      invalidatesTags: ['COMMENT'],
+    }),
+  }),
 })

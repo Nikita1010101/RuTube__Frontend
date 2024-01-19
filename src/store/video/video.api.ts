@@ -1,71 +1,74 @@
-import { ILikes, IVideo } from '@/types/video.interface'
+import { createApi } from '@reduxjs/toolkit/dist/query/react'
 
-import { userApi } from '../user/user.api'
+import { TVideo, TVideoSorting } from '@/types/video.types'
+import { baseQueryWithReAuth } from '@/store/queries/re-auth-query'
+import { TSuccessRequest } from '@/types/request.types'
 
-export const videoApi = userApi.injectEndpoints({
+export const videoApi = createApi({
+  reducerPath: 'api',
+  baseQuery: baseQueryWithReAuth,
+  tagTypes: ['COMMENT', 'LIKE', 'SUBSCRIPTION', 'USER', 'VIDEO'],
   endpoints: (builder) => ({
-    getAllVideos: builder.query<IVideo[], string | null>({
-      query: (search: string | null) =>
-        `/video${search ? '?search=' + search : ''}`,
-      providesTags: ['Video'],
+    videoGetAll: builder.query<
+      TVideo[],
+      Partial<{ search: string; sort: TVideoSorting }> | null
+    >({
+      query: (params) => {
+        const search = params?.search
+        const sort = params?.sort
+
+        let basePath = '/video?'
+
+        if (search) basePath += `_search=${search}`
+        if (sort) basePath += `_sort=${sort}`
+
+        return basePath
+      },
+      providesTags: ['VIDEO'],
     }),
 
-    getVideoById: builder.query<IVideo, number>({
+    videoGetAllMy: builder.query<TVideo[], null>({
+      query: () => '/video/get/my',
+      providesTags: ['VIDEO'],
+    }),
+
+    videoGetOne: builder.query<TVideo, number>({
       query: (userId: number) => `/video/${userId}`,
-      providesTags: ['Video'],
+      providesTags: ['VIDEO'],
     }),
 
-    getSubsciptionVideos: builder.query<IVideo[], number>({
-      query: (userId: number) => `/video/subscriptions/${userId}`,
-      providesTags: ['Video'],
+    videoCreate: builder.mutation<number, null>({
+      query: () => ({
+        url: '/video/create',
+        method: 'POST',
+      }),
     }),
 
-    getLikedVideos: builder.query<IVideo[], number>({
-      query: (userId: number) => `/video/liked/${userId}`,
-      providesTags: ['Video'],
-    }),
-
-    getVideoLikes: builder.query<ILikes[], number>({
-      query: (videoId: number) => `/video/likes/${videoId}`,
-      providesTags: ['Video'],
-    }),
-
-    getLikesLength: builder.query<number, number>({
-      query: (videoId: number) => `/video/likes-length/${videoId}`,
-      providesTags: ['Video'],
-    }),
-
-    checkLike: builder.query<boolean, ILikes>({
-      query: ({ userId, videoId }) =>
-        `/video/likes?userId=${userId}&videoId=${videoId}`,
-      providesTags: ['Video'],
-    }),
-
-    addView: builder.mutation<null, { id: number }>({
+    videoUpdateContent: builder.mutation<null, FormData>({
       query: (body) => ({
+        url: '/video/update/content',
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        body,
+      }),
+    }),
+
+    videoAddView: builder.mutation<TSuccessRequest, number>({
+      query: (videoId: number) => ({
         url: '/video/view',
         method: 'PATCH',
-        body,
+        body: { videoId },
       }),
-      invalidatesTags: ['Video'],
     }),
 
-    addLike: builder.mutation<IVideo, ILikes>({
-      query: (body) => ({
-        url: '/video/like',
-        method: 'POST',
-        body,
-      }),
-      invalidatesTags: ['Video'],
-    }),
-
-    removeLike: builder.mutation<IVideo, ILikes>({
-      query: (body) => ({
-        url: `/video/like`,
+    videoRemove: builder.mutation<TSuccessRequest, number>({
+      query: (videoId: number) => ({
+        url: '/video/remove',
         method: 'DELETE',
-        body,
+        body: { videoId },
       }),
-      invalidatesTags: ['Video'],
     }),
   }),
 })

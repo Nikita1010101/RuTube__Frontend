@@ -1,0 +1,40 @@
+.registerForm {
+  @apply absolute top-16 right-10 w-[500px] pt-4 pb-10 text-center bg-gray-800 rounded-lg shadow-md;
+
+  h2 {
+    @apply mt-3 mb-5 text-2xl font-semibold;
+
+    font {
+      @apply mb-4 text-2xl font-semibold;
+    }
+  }
+  form {
+    @apply w-3/4 mx-auto;
+
+    input {
+      @apply w-full h-9 mb-3 px-2 text-gray-700 font-medium rounded-md border-none active:outline-1 active:outline-red-700;
+    }
+
+    button {
+      @apply w-4/5 h-9 my-2 bg-green-700 rounded-md transition hover:bg-green-800 active:bg-green-900;
+    }
+
+    span {
+      @apply block text-gray-400;
+
+      &:last-child {
+        @apply hover:underline;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .registerForm {
+    @apply w-72 right-4;
+
+    form {
+      @apply w-4/5;
+    }
+  }
+}

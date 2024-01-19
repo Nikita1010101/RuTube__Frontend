@@ -1,5 +1,5 @@
-import { IVideo } from "@/types/video.interface";
+import { TVideo } from "@/types/video.types";
 
 export interface IMySubscriptions {
-  videos: IVideo[]
+  videos: TVideo[]
 }

@@ -1,34 +1,60 @@
-import { AxiosResponse } from 'axios'
+import axios, { Axios, AxiosResponse } from 'axios'
 
+import {
+  TAuthData,
+  TEditBody,
+  TLoginBody,
+  TRegistrationBody,
+} from '@/types/auth.types'
 import { $axios } from '@/api/axios'
-import { TLoginBody, TRegistrationBody } from '@/types/auth.type'
-import { IUser } from '@/types/user.interface'
 
 export const AuthService = {
   async registration(body: TRegistrationBody) {
-    return await $axios.post<AxiosResponse<IUser>>('/auth/registration', body, {
+    const { data } = await $axios.post<
+      AxiosResponse<TAuthData, TRegistrationBody>
+    >('/auth/registration', body, {
+      withCredentials: true,
+    })
+    return data
+  },
+
+  async refresh() {
+    return await $axios.get<TAuthData>(
+      '/auth/refresh',
+      {
+        withCredentials: true,
+      }
+    )
+  },
+
+  async login(body: TLoginBody) {
+    return await $axios.post<TAuthData, AxiosResponse<TAuthData, TLoginBody>>(
+      '/auth/login',
+      body,
+      {
+        withCredentials: true,
+      }
+    )
+  },
+
+  async logout() {
+    return await axios.post(`${process.env.APP_API}/api/auth/logout`, {
       withCredentials: true,
     })
   },
 
-  async login(body: TLoginBody) {
-    return await $axios.post<AxiosResponse<IUser>>('/auth/login', body, { withCredentials: true })
+  async edit(body: TEditBody) {
+    return await axios.patch(`${process.env.APP_API}/api/auth/edit`, body, {
+      withCredentials: true,
+    })
   },
 
-  async logout() {
-    return await $axios.delete<AxiosResponse<boolean>>('/auth/logout', { withCredentials: true })
-  },
-
-  async activate(password: string) {
-    return await $axios.post<AxiosResponse<boolean>>(
-      '/auth/activate',
-      { password },
-      { withCredentials: true }
+  async remove(profileId: number) {
+    return await axios.delete(
+      `${process.env.APP_API}/api/auth/remove/${profileId}`,
+      {
+        withCredentials: true,
+      }
     )
   },
 }
-
-enum Edfj {
-  auth = 'adfasdf'
-}
-

@@ -1,6 +1,7 @@
-import { Tranding } from "@/components/Layout/Screens/Trending/Trending";
 import React from "react";
 
+import { Trending } from "@/components/Layout/Screens/Trending/Trending";
+
 export default function TrendingPage() {
-  return <Tranding />
+  return <Trending />
 }

@@ -1,19 +1,15 @@
-import { Video } from '@/components/Layout/Screens/Video/Video'
-import { VideoService } from '@/services/video.service'
 import React from 'react'
 
-type PageProps = {
-  params: {
-    id: string
-  }
-}
+import { Video } from '@/components/Layout/Screens/Video/Video'
+import { VideoService } from '@/services/video.service'
+import { TPageParams } from '@/types/page.types'
 
 async function getData(id: number) {
-  const { data: video } = await VideoService.getById(id)
+  const { data: video } = await VideoService.getOne(id)
   return video
 }
 
-export default async function VideoPage(context: PageProps) {
-  const video = await getData(Number(context.params.id))
+export default async function VideoPage(context: TPageParams) {
+  const video = await getData(+context.params.id)
   return <Video video={video} />
 }
