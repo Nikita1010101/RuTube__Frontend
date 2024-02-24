@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux'
-import { userApi } from './api/user.api'
-import { searchSlice } from './slices/search/search.slice'
+
+import { searchSlice } from './search/search.slice'
+import { authSlice } from './auth/auth.slice'
+import { videoApi } from './video/video.api'
 
 export const rootReducer = combineReducers({
-	search: searchSlice.reducer,
-	[userApi.reducerPath]: userApi.reducer
+  auth: authSlice.reducer,
+  search: searchSlice.reducer,
+  [videoApi.reducerPath]: videoApi.reducer,
 })

@@ -1,3 +1,5 @@
+'use client'
+
 import { FC, MouseEvent, useState } from 'react'
 import styles from './VideoPlayer.module.scss'
 
@@ -8,7 +10,7 @@ import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
 import { IVideoPlayer } from './VideoPlayer.interface'
 
 import { formatVideoTime } from '@/utils/formatVideoTime'
-import { videoApi } from '@/store/api/video.api'
+import { videoApi } from '@/store/video/video.api'
 
 export const VideoPlayer: FC<IVideoPlayer> = ({
 	videoId,
@@ -26,10 +28,10 @@ export const VideoPlayer: FC<IVideoPlayer> = ({
 
 	const [viewed, setViewed] = useState<boolean>(false)
 
-	if (status.progress >= 90 && !viewed) {
-		setViewed(true)
-		addView({ id: Number(videoId) })
-	}
+	// if (status.progress >= 90 && !viewed) {
+	// 	setViewed(true)
+	// 	addView({ id: Number(videoId) })
+	// }
 
 	const rewind = (event: MouseEvent<HTMLDivElement>): void => {
 		const parent = event.currentTarget.getBoundingClientRect()
@@ -42,6 +44,7 @@ export const VideoPlayer: FC<IVideoPlayer> = ({
 	return (
 		<div className={styles.player}>
 			<video
+				autoPlay
 				ref={videoRef}
 				poster={previewUrl}
 				onClick={toggleVideo}

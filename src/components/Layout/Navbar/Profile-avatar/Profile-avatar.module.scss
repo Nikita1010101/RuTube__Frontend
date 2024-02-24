@@ -1,0 +1,26 @@
+.profile {
+  @apply grid bg-transparent justify-items-end items-end;
+
+  .avatar {
+    @apply min-w-[36px] min-h-[36px] max-w-[36px] max-h-[36px] opacity-60 rounded-3xl cursor-pointer border-2 border-solid border-transparent outline-2 outline-gray-600 shadow;
+  }
+}
+.formWrapper {
+  @apply fixed top-0 left-0 right-0 bottom-0 invisible opacity-0 cursor-pointer transition-all bg-black bg-opacity-0;
+
+  &.active {
+    @apply visible opacity-100 bg-opacity-40;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .profile {
+    @apply w-1/5;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .profile {
+    @apply w-1/3;
+  }
+}

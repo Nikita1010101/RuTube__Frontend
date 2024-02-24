@@ -1,27 +1,36 @@
-import { FC } from 'react'
+'use client'
 
-import { Layout } from '@/components/Layout/Layout'
-import { Catalog } from '../Home/Catalog/Catalog'
-import { Discover } from './Discover/Discover'
-import { IHome } from './Home.interface'
+import { FC, useEffect, useState } from 'react'
 
-import { videoApi } from '@/store/api/video.api'
+import { Catalog } from '@/components/Layout/Catalog/Catalog'
+import { Discover } from '@/components/Layout/Screens/Home/Discover/Discover'
+import { useCreateDiscoverVideos } from '@/hooks/use-create-discover-videos'
+import { videoApi } from '@/store/video/video.api'
+import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
 
-export const Home: FC<IHome> = ({ popularVideo, randomVideo }) => {
-	const { data: videos } = videoApi.useGetAllVideosQuery(null)
-	const randomVideos = videos
-		?.slice()
-		.sort(() => (Math.random() < 0.5 ? 1 : -1))
-	return (
-		<Layout title='Главная' description='Home'>
-			<header>
-				<Discover
-					videos={videos}
-					popularVideo={popularVideo}
-					randomVideo={randomVideo}
-				/>
-				<Catalog videos={randomVideos} />
-			</header>
-		</Layout>
-	)
+export const Home: FC = () => {
+  const { data: videos, isLoading } = videoApi.useVideoGetAllQuery(null)
+
+  const [randomId, setRandomId] = useState<number>(0.1)
+  const { popularVideo, randomVideo } = useCreateDiscoverVideos(
+    videos,
+    randomId
+  )
+
+  useEffect(() => {
+    if (videos) {
+      setRandomId(Math.floor(Math.random() * videos.length))
+    }
+  }, [videos])
+
+  return (
+    <header>
+      <Discover popularVideo={popularVideo} randomVideo={randomVideo} />
+      <Catalog
+        videos={videos}
+        isLoading={isLoading}
+        title={CATALOG_TITLES.recommended}
+      />
+    </header>
+  )
 }

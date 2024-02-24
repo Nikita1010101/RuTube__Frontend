@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import cn from 'classnames'
 import ContentLoader from 'react-content-loader'

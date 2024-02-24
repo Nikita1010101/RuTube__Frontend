@@ -1,17 +1,21 @@
+'use client'
+
 import { FC } from 'react'
 
-import { Layout } from '@/components/Layout/Layout'
-import { Catalog } from '../Home/Catalog/Catalog'
+import { Catalog } from '../../Catalog/Catalog'
+import { videoApi } from '@/store/video/video.api'
+import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
 
-import { videoApi } from '@/store/api/video.api'
+export const Trending: FC = () => {
+  const { data: videos, isLoading } = videoApi.useVideoGetAllQuery({
+    sort: 'popular',
+  })
 
-export const Tranding: FC = () => {
-	const { data: videos } = videoApi.useGetAllVideosQuery(null)
-	const popularVideos = videos?.slice().sort((a, b) => b.views - a.views)
-
-	return (
-		<Layout title='Тренды' description='Tranding'>
-			<Catalog videos={popularVideos} />
-		</Layout>
-	)
+  return (
+    <Catalog
+      videos={videos}
+      isLoading={isLoading}
+      title={CATALOG_TITLES.popular}
+    />
+  )
 }

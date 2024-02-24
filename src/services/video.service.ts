@@ -1,13 +1,22 @@
-import { IVideo } from '@/types/video.interface'
-import { axiosClassic } from 'api/axios'
 import { AxiosResponse } from 'axios'
 
-export const VideoService = {
-	async getAll(): Promise<AxiosResponse<IVideo[]>> {
-		return axiosClassic.get<null, AxiosResponse<IVideo[]>>('/video')
-	},
+import { $axios } from '@/api/axios'
+import { TSuccessRequest } from '@/types/request.types'
+import { TVideo } from '@/types/video.types'
 
-	async getById(id: number): Promise<AxiosResponse<IVideo>> {
-		return axiosClassic.get<number, AxiosResponse<IVideo>>(`/video/${id}`)
-	}
+export const VideoService = {
+  async getOne(videoId: number) {
+    return await $axios.get<AxiosResponse<TVideo[], number>>(`/video/${videoId}`, {
+      withCredentials: true,
+    })
+  },
+  async updateVideo() {
+    return await $axios.get<AxiosResponse<null, TSuccessRequest>>(
+      '/video/update/video',
+      {
+        withCredentials: true,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }
+    )
+  },
 }

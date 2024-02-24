@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-export const axiosClassic = axios.create({
-	baseURL: process.env.APP_API
+export const $axios = axios.create({
+	baseURL: `${process.env.APP_API}/api`
 })

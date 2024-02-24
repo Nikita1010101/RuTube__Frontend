@@ -1,5 +1,8 @@
+'use client'
+
 import { FC } from 'react'
 import Link from 'next/link'
+
 import styles from './Logo.module.scss'
 
 export const Logo: FC = () => {

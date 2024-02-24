@@ -1,5 +1,7 @@
-import { searchSlice } from './slices/search/search.slice'
+import * as authActions from '@/store/auth/auth.action'
+import { searchSlice } from './search/search.slice'
 
 export const rootActions = {
-	...searchSlice.actions
+  ...authActions,
+  ...searchSlice.actions,
 }
