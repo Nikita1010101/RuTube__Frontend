@@ -24,6 +24,7 @@
       "@/assets/*": ["src/assets/*"],
 			"@/components/*": ["src/components/*"],
       "@/constants/*": ["src/constants/*"],
+      "@/helpers/*": ["src/helpers/*"],
 			"@/hooks/*": ["src/hooks/*"],
 			"@/public/*": ["public/*"],
 			"@/services/*": ["src/services/*"],

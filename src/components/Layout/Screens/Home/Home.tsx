@@ -2,14 +2,14 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import { Catalog } from '@/components/Layout/Catalog/Catalog'
+import { Catalog } from '@/components/shared/Catalog/Catalog'
 import { Discover } from '@/components/Layout/Screens/Home/Discover/Discover'
 import { useCreateDiscoverVideos } from '@/hooks/use-create-discover-videos'
 import { videoApi } from '@/store/video/video.api'
-import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
+import { CATALOG_TITLES } from '@/constants/titles.constant'
 
 export const Home: FC = () => {
-  const { data: videos, isLoading } = videoApi.useVideoGetAllQuery(null)
+  const { data: videos, isLoading } = videoApi.useVideoGetAllQuery({})
 
   const [randomId, setRandomId] = useState<number>(0.1)
   const { popularVideo, randomVideo } = useCreateDiscoverVideos(

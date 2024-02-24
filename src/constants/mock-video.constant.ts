@@ -1,0 +1,1 @@
+export const VIDEO_MOCK_URL = `${process.env.APP_API}/uploads/previews/video-mock.png`

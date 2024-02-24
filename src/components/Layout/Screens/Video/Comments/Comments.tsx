@@ -1,11 +1,11 @@
 'use client'
 
 import { FC, useState } from 'react'
+import { Send } from 'lucide-react'
 
 import styles from './Comments.module.scss'
 import { CommentItem } from './Comment-item/Comment-item'
 import { IComments } from './Comments.interface'
-import { IoMdSend } from 'react-icons/io'
 
 // import { useComment } from '@/hooks/useComment'
 
@@ -46,7 +46,7 @@ export const Comments: FC<IComments> = ({
 				<button onClick={additionComment} 
 				// disabled={isLoading}
 				>
-					<IoMdSend />
+					<Send />
 				</button>
 			</div>
 		</div>

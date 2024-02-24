@@ -1,15 +1,3 @@
 .logo {
   @apply text-3xl font-bold cursor-pointer bg-transparent;
 }
-
-@media screen and (max-width: 1400px) {
-  .logo {
-    @apply text-2xl;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .logo {
-    @apply hidden;
-  }
-}

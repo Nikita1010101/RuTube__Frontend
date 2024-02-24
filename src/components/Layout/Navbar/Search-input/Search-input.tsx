@@ -1,9 +1,9 @@
 'use client'
 
 import { FC, useState } from 'react'
-import styles from './Search-input.module.scss'
+import { SearchCheck } from 'lucide-react'
 
-import { BsSearch } from 'react-icons/bs'
+import styles from './Search-input.module.scss'
 
 // import { useActions } from '@/hooks/useActions'
 // import { useDebounce } from '@/hooks/useDebounce'
@@ -14,7 +14,7 @@ export const SearchInput: FC = () => {
   // const debounce = useDebounce(inputValue, 200)
 
   // useEffect(() => {
-    // changeSearchValue(inputValue)
+  // changeSearchValue(inputValue)
   // }, [debounce, inputValue, changeSearchValue])
 
   return (
@@ -25,7 +25,7 @@ export const SearchInput: FC = () => {
         type="text"
         placeholder="Поиск видео..."
       />
-      <BsSearch className={styles.searchIcon} />
+      <SearchCheck className={styles.searchIcon} />
     </div>
   )
 }

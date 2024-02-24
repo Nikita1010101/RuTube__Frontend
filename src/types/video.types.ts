@@ -22,4 +22,9 @@ export type TVideoAttachModels = {
 
 export type TVideo = TVideoInstance & TVideoAttachModels
 
+export type IVideoContent = Pick<
+  TVideoInstance,
+  'description' | 'duration' | 'previewUrl' | 'title' | 'videoUrl'
+>
+
 export type TVideoSorting = 'last' | 'old' | 'popular'

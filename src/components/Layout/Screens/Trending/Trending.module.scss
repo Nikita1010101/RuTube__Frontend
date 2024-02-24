@@ -1,10 +1,12 @@
 .catalog {
   @apply my-10 mx-7;
+
   > h1 {
     @apply mb-5 text-2xl font-semibold;
   }
+
   .content {
-    @apply grid;
+    @apply grid col-span-4;
     grid-template-columns: repeat(4, 275px);
     justify-content: space-between;
     justify-items: center;

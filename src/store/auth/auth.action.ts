@@ -53,8 +53,8 @@ export const remove = createAsyncThunk(
   'auth/remove',
   async (profileId: number, thunkAPI) => {
     try {
-      const { data: profile } = await AuthService.remove(profileId)
-      return profile
+      const { data } = await AuthService.remove(profileId)
+      return data
     } catch (error) {
       thunkAPI.rejectWithValue(error)
     }

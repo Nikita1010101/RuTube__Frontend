@@ -1,14 +1,16 @@
 'use client'
 
 import { FC } from 'react'
+
+import { usePlayer } from '@/components/Layout/Screens/Video/use-player'
+import { TUser } from '@/types/user.types'
+import { TComment } from '@/types/comment.types'
+
 import styles from './Video.module.scss'
 import { VideoPlayer } from './Video-player/VideoPlayer'
 import { VideoContent } from './Video-content/Video-content'
 import { Comments } from './Comments/Comments'
 import { IItemVideo } from './Video.interface'
-import { usePlayer } from '@/hooks/usePlayer'
-import { TUser } from '@/types/user.types'
-import { TComment } from '@/types/comment.types'
 
 export const Video: FC<IItemVideo> = ({ video }) => {
   const player = usePlayer()
@@ -22,7 +24,7 @@ export const Video: FC<IItemVideo> = ({ video }) => {
         <VideoPlayer
           videoId={video?.id}
           videoUrl={video?.videoUrl}
-          previewUrl={video?.previewPath}
+          previewUrl={video?.previewUrl}
           {...player}
         />
         <VideoContent video={video} />

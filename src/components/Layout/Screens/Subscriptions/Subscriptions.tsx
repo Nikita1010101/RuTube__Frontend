@@ -2,16 +2,13 @@
 
 import React, { FC } from 'react'
 
-import { Catalog } from '../../Catalog/Catalog'
-import { likeApi } from '@/store/like/like.api'
-import { CATALOG_TITLES } from '@/constants/catalog-titles.constant'
+import { Catalog } from '@/components/shared/Catalog/Catalog'
+import { CATALOG_TITLES } from '@/constants/titles.constant'
 import { subscriptionApi } from '@/store/subscription/subscription.api'
 
 export const Subscriptions: FC = () => {
   const { data: videos, isLoading } =
     subscriptionApi.useSubscriptionGetVideosQuery(null)
-
-  console.log('🚀 ~ videos:', videos)
 
   return (
     <>

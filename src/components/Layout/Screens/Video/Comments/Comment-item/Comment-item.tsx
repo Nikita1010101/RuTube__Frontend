@@ -6,7 +6,7 @@ import styles from './Comment-item.module.scss'
 import { FaUserAlt } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
 
-import { Avatar } from '@/components/UI/Avatar/Avatar'
+import { Avatar } from '@/components/shared/Avatar/Avatar'
 import { TComment } from '@/types/comment.types'
 
 // import { useAuth } from '@/hooks/useAuth'
@@ -44,7 +44,7 @@ export const CommentItem: FC<TComment> = ({
 	return (
 		<div className={styles.commentItem}>
 			{/* {avatarPath ? (
-				<Avatar type='comment' imagePath={avatarPath} />
+				<Avatar type='comment' imageUrl={avatarPath} />
 			) : (
 				<FaUserAlt className={styles.avatar} />
 			)} */}

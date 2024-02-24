@@ -1,5 +1,5 @@
-export const useThrottling = (
-  func: () => void,
+export const useThrottling = <T extends Function>(
+  func: T,
   delay?: number
 ): (() => void) => {
   let timer: NodeJS.Timeout | null = null

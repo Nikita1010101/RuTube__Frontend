@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 import styles from './Discover-item.module.scss'
-import { Avatar } from '@/components/UI/Avatar/Avatar'
+import { Avatar } from '@/components/shared/Avatar/Avatar'
 import { IDiscoverVideo } from './Discover-item.interface'
 import { formatNumber } from '@/utils/formatNumber'
 
@@ -34,7 +34,7 @@ export const DiscoverItem: FC<IDiscoverVideo> = ({
       <div className={styles.content}>
         <Link href={`/video/${id}`}>
           <h1>{title}</h1>
-          <Avatar type="default" imagePath={user?.avatarUrl} />
+          <Avatar type="default" imageUrl={user?.avatarUrl} />
           <span onClick={(event) => event.stopPropagation()}>
             <span
             title={user?.name}

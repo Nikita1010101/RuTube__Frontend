@@ -10,15 +10,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "@tanstack/react-query": "^5.17.19",
     "async-mutex": "^0.4.0",
     "axios": "^1.6.2",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.7",
     "eslint-config-next": "^13.4.4",
+    "lucide-react": "^0.312.0",
     "next": "14.0.2",
     "next-nprogress-bar": "^2.1.2",
     "next-redux-wrapper": "^8.1.0",
-    "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-content-loader": "^6.2.1",
     "react-dom": "^18",
@@ -28,6 +29,7 @@
     "sass": "^1.59.3"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.17.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

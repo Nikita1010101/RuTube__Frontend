@@ -1,5 +1,5 @@
 export type TPageParams = {
   params: {
-    id: string
+    slug: string
   }
 }

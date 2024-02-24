@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { ACCESS_TOKEN } from '@/constants/token.constant'
+import { interactWithLocalStorage } from '@/helpers/interact-with-local-storage'
+
+import { login, logout, refresh, edit, remove } from './auth.action'
 import { IAuthInitialState } from './auth.interface'
-import { login, refresh } from './auth.action'
-import { TAuthData } from '@/types/auth.types'
 
 export const initialState: IAuthInitialState = {
   profile: null,
-  accessToken: '',
 }
 
 export const authSlice = createSlice({
@@ -14,36 +15,52 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.accessToken = ''
       state.profile = null
+      interactWithLocalStorage(ACCESS_TOKEN, '')
     },
     setAuthData: (state, { payload }) => {
-      state.accessToken = payload.accessToken
       state.profile = payload.user
+      interactWithLocalStorage(ACCESS_TOKEN, payload.accessToken)
     },
   },
   extraReducers: (builder) =>
     builder
-      .addCase(refresh.rejected, (state) => {
-        state.accessToken = ''
+      .addCase(login.rejected, (state) => {
         state.profile = null
-      })
-      .addCase(refresh.fulfilled, (state, { payload }) => {
-        if (payload) {
-          state.accessToken = payload.accessToken
-          state.profile = payload.user
-        }
+        interactWithLocalStorage(ACCESS_TOKEN, '')
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         if (payload) {
-          state.accessToken = payload.accessToken
           state.profile = payload.user
+          interactWithLocalStorage(ACCESS_TOKEN, payload.accessToken)
         }
       })
-      .addCase(login.rejected, (state) => {
-        state.accessToken = ''
+      .addCase(logout.fulfilled, (state, { payload }) => {
+        if (payload) {
+          state.profile = null
+          interactWithLocalStorage(ACCESS_TOKEN, '')
+        }
+      })
+      .addCase(refresh.rejected, (state) => {
         state.profile = null
+        interactWithLocalStorage(ACCESS_TOKEN, '')
+      })
+      .addCase(refresh.fulfilled, (state, { payload }) => {
+        if (payload) {
+          state.profile = payload.user
+          interactWithLocalStorage(ACCESS_TOKEN, payload.accessToken)
+        }
+      })
+      .addCase(edit.fulfilled, (state, { payload }) => {
+        if (payload) {
+          state.profile = payload.user
+          interactWithLocalStorage(ACCESS_TOKEN, payload.accessToken)
+        }
+      })
+      .addCase(remove.fulfilled, (state) => {
+        state.profile = null
+        interactWithLocalStorage(ACCESS_TOKEN, '')
       }),
 })
 
-export const actions = authSlice.actions
+export const authActions = authSlice.actions

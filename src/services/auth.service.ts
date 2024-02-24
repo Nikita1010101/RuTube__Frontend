@@ -1,60 +1,34 @@
-import axios, { Axios, AxiosResponse } from 'axios'
-
 import {
   TAuthData,
-  TEditBody,
   TLoginBody,
   TRegistrationBody,
+  TEditBody,
 } from '@/types/auth.types'
 import { $axios } from '@/api/axios'
+import { TSuccessRequest } from '@/types/request.types'
 
 export const AuthService = {
-  async registration(body: TRegistrationBody) {
-    const { data } = await $axios.post<
-      AxiosResponse<TAuthData, TRegistrationBody>
-    >('/auth/registration', body, {
-      withCredentials: true,
-    })
-    return data
-  },
-
-  async refresh() {
-    return await $axios.get<TAuthData>(
-      '/auth/refresh',
-      {
-        withCredentials: true,
-      }
-    )
+  async edit(body: TEditBody) {
+    return await $axios.patch<TAuthData>('/auth/edit', body)
   },
 
   async login(body: TLoginBody) {
-    return await $axios.post<TAuthData, AxiosResponse<TAuthData, TLoginBody>>(
-      '/auth/login',
-      body,
-      {
-        withCredentials: true,
-      }
-    )
+    return await $axios.post<TAuthData>('/auth/login', body)
   },
 
   async logout() {
-    return await axios.post(`${process.env.APP_API}/api/auth/logout`, {
-      withCredentials: true,
-    })
+    return await $axios.post<TSuccessRequest>('/auth/logout')
   },
 
-  async edit(body: TEditBody) {
-    return await axios.patch(`${process.env.APP_API}/api/auth/edit`, body, {
-      withCredentials: true,
-    })
+  async refresh() {
+    return await $axios.get<TAuthData>('/auth/refresh')
+  },
+
+  async registration(body: TRegistrationBody) {
+    return await $axios.post<TAuthData>('/auth/registration', body)
   },
 
   async remove(profileId: number) {
-    return await axios.delete(
-      `${process.env.APP_API}/api/auth/remove/${profileId}`,
-      {
-        withCredentials: true,
-      }
-    )
+    return await $axios.delete(`/auth/remove/${profileId}`)
   },
 }

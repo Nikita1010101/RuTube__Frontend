@@ -1,0 +1,17 @@
+.catalog {
+	@apply mb-10 mx-7;
+	> h1 {
+		@apply mb-7 text-2xl font-semibold;
+	}
+	.content {
+		@apply grid grid-cols-[repeat(4,_23.8%)] gap-y-6 justify-between justify-items-center;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.catalog {
+		.content {
+			grid-template-columns: repeat(3, 31.4%);
+		}
+	}
+}

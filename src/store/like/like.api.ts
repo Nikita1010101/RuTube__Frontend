@@ -9,21 +9,23 @@ export const likeApi = videoApi.injectEndpoints({
       providesTags: ['LIKE'],
     }),
 
-    likeCheck: builder.query<boolean, number>({
+    likeCheck: builder.query<{ isLike: boolean }, number>({
       query: (videoId: number) => `/like/check/${videoId}`,
+      providesTags: ['LIKE'],
     }),
 
-    likeGetLength: builder.query<number, number>({
+    likeGetLength: builder.query<{ length: number }, number>({
       query: (videoId: number) => `/like/length/${videoId}`,
+      providesTags: ['LIKE'],
     }),
 
-    likeChange: builder.mutation<TSuccessRequest, number>({
+    likeUpdate: builder.mutation<TSuccessRequest, number>({
       query: (videoId: number) => ({
         url: '/like/change',
         method: 'POST',
         body: { videoId },
       }),
-      invalidatesTags: ['LIKE']
+      invalidatesTags: ['LIKE'],
     }),
   }),
 })

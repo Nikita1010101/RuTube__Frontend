@@ -1,0 +1,109 @@
+.step {
+  @apply w-full h-full hidden opacity-0 transition;
+
+  .upload_video {
+    @apply w-3/5 h-3/4 flex flex-col justify-center items-center bg-primary rounded-2xl shadow;
+
+    h2 {
+      @apply mb-6 flex justify-between items-center text-2xl font-semibold;
+
+      span {
+        @apply ml-3;
+      }
+    }
+
+    input {
+      @apply text-gray-400 rounded-lg;
+
+      &::file-selector-button {
+        @apply py-2 px-5 mr-4 bg-white text-blue-700 font-bold border-none rounded-full cursor-pointer;
+      }
+    }
+  }
+
+  .upload_content {
+    @apply w-3/5 h-3/4 p-7 flex justify-between bg-primary rounded-2xl shadow ;
+
+    .left_content {
+      @apply relative w-[57%];
+
+      .title_input {
+        @apply w-full py-2 px-3.5 bg-secondary outline-none border-none rounded-lg;
+      }
+
+      .description_input {
+        @apply w-full mt-[18px] py-2 px-3.5 bg-secondary outline-none border-none rounded-lg resize-none;
+      }
+
+      .preview_input {
+        @apply w-full my-7 text-gray-400 cursor-pointer;
+
+        &::file-selector-button {
+          @apply py-2 px-5 mr-4 bg-white text-blue-700 font-bold border-none rounded-full cursor-pointer;
+        }
+      }
+
+      .is_public {
+        @apply flex items-center;
+
+        .button_wrapper {
+          @apply w-12 h-7 mr-5 p-1 bg-secondary rounded-full transition;
+
+          .button {
+            @apply w-5 h-5 bg-white rounded-full translate-x-0 transition;
+          }
+
+          &.public {
+            @apply bg-purple-900;
+
+            .button {
+              @apply translate-x-5;
+            }
+          }
+        }
+
+        h4 {
+          @apply font-medium;
+        }
+      }
+
+      .loading_process {
+        @apply absolute left-0 bottom-0 flex items-center text-xl font-bold;
+
+        span {
+          @apply ml-4;
+        }
+      }
+    }
+
+    .right_content {
+      @apply relative w-[35%];
+
+      .preview_mock {
+        @apply w-full h-[40%] flex justify-center items-center bg-secondary rounded-lg text-gray-400 font-medium;
+      }
+
+      .preview_image {
+        @apply rounded-lg;
+      }
+
+      .file_info {
+        span {
+          @apply block mt-3 text-gray-400;
+        }
+
+        h5 {
+          @apply font-medium whitespace-nowrap overflow-hidden text-ellipsis;
+        }
+      }
+
+      .button_save {
+        @apply absolute right-0 bottom-0 py-1.5 px-5 bg-tertiary rounded-lg shadow font-medium cursor-pointer transition duration-300 hover:bg-orange-500 active:bg-orange-600;
+      }
+    }
+  }
+
+  &.active {
+    @apply flex justify-center items-center opacity-100;
+  }
+}

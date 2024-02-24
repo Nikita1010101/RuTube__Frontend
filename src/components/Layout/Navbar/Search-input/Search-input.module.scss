@@ -1,29 +1,11 @@
 .search {
-	@apply grid w-full h-9 bg-secondary rounded-md shadow-md;
-	grid-template-columns: 1fr 50px;
-	justify-items: center;
+	@apply grid grid-cols-[1fr_50px] justify-items-center w-full h-9 bg-secondary rounded-md shadow-md;
+
 	input {
 		@apply pl-4 w-full text-xs bg-secondary border-none outline-none rounded-md;
 	}
+
 	.searchIcon {
-		@apply w-4 h-full bg-secondary opacity-50;
-	}
-}
-
-@media screen and (max-width: 1400px) {
-	.search {
-		@apply w-1/2;
-	}
-}
-
-@media screen and (max-width: 1200px) {
-	.search {
-		@apply w-3/5;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.search {
-		@apply w-11/12;
+		@apply w-4 h-full opacity-80;
 	}
 }

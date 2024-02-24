@@ -1,14 +1,10 @@
-import { fetchBaseQuery } from "@reduxjs/toolkit/query"
-
-import { TypeSelectorHook } from "../store"
+import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.APP_API}/api`,
   credentials: 'include',
-  prepareHeaders: (headers, { getState }) => {
-    const state = getState() as TypeSelectorHook
-
-    const token = state.auth.accessToken
+  prepareHeaders: (headers) => {
+    const token = localStorage.getItem('accessToken')
 
     if (token) {
       headers.set('Content-Type', 'application/json')

@@ -7,23 +7,13 @@ import { TSuccessRequest } from '@/types/request.types'
 export const videoApi = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ['COMMENT', 'LIKE', 'SUBSCRIPTION', 'USER', 'VIDEO'],
+  tagTypes: ['COMMENT', 'LIKE', 'SUBSCRIPTION', 'VIDEO'],
   endpoints: (builder) => ({
     videoGetAll: builder.query<
       TVideo[],
-      Partial<{ search: string; sort: TVideoSorting }> | null
+      Partial<{ search: string; sort: TVideoSorting }>
     >({
-      query: (params) => {
-        const search = params?.search
-        const sort = params?.sort
-
-        let basePath = '/video?'
-
-        if (search) basePath += `_search=${search}`
-        if (sort) basePath += `_sort=${sort}`
-
-        return basePath
-      },
+      query: (params) => ({ url: '/video', params }),
       providesTags: ['VIDEO'],
     }),
 
@@ -37,22 +27,12 @@ export const videoApi = createApi({
       providesTags: ['VIDEO'],
     }),
 
-    videoCreate: builder.mutation<number, null>({
+    videoCreate: builder.mutation<{ videoId: number }, void>({
       query: () => ({
         url: '/video/create',
         method: 'POST',
       }),
-    }),
-
-    videoUpdateContent: builder.mutation<null, FormData>({
-      query: (body) => ({
-        url: '/video/update/content',
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        body,
-      }),
+      invalidatesTags: ['VIDEO'],
     }),
 
     videoAddView: builder.mutation<TSuccessRequest, number>({
@@ -60,15 +40,16 @@ export const videoApi = createApi({
         url: '/video/view',
         method: 'PATCH',
         body: { videoId },
+        invalidatesTags: ['VIDEO'],
       }),
     }),
 
     videoRemove: builder.mutation<TSuccessRequest, number>({
       query: (videoId: number) => ({
-        url: '/video/remove',
+        url: `/video/remove/${videoId}`,
         method: 'DELETE',
-        body: { videoId },
       }),
+      invalidatesTags: ['VIDEO'],
     }),
   }),
 })

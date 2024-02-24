@@ -1,48 +1,33 @@
 .player {
 	@apply w-full;
+
 	video {
-		@apply rounded-md outline-none;
+		@apply mx-auto rounded-md outline-none;
 	}
 
 	.controls {
-		@apply flex justify-between items-center bg-secondary rounded-md opacity-0 shadow-lg;
-		margin: 0 2.5%;
-		padding: 0.5% 1.5%;
-		width: 95%;
-		transition: all 500ms ease-in-out;
+		@apply w-[95%] mx-[2.5%] py-[0.5%] px-[1.5%] flex justify-between items-center bg-secondary rounded-md opacity-0 shadow-lg transition duration-500;
 		transform: translateY(-33px);
+
 		> div {
 			@apply cursor-pointer;
 		}
 
 		.controlerBtns {
 			@apply flex items-center justify-between;
+			
 			svg {
-				@apply p-0.5 rounded-2xl;
-				transition: all 300ms ease-in-out;
-				&:nth-child(1),
-				&:nth-child(3) {
-					min-width: 22px;
-					min-height: 22px;
-				}
-				&:nth-child(2) {
-					min-width: 26px;
-					min-height: 26px;
-				}
-				&:hover {
-					@apply bg-gray-600 rounded-lg;
-				}
+				@apply p-0.5 rounded-lg transition hover:bg-gray-600;
 			}
 		}
 
 		.progressBar {
 			@apply w-2/3 h-1.5 bg-gray-500 rounded-md;
 			> div {
-				@apply h-full flex justify-end items-center bg-gray-200 rounded-md;
-				transition: all 150ms ease-in-out;
+				@apply h-full flex justify-end items-center bg-gray-200 rounded-md transition duration-150;
+
 				div {
-					@apply w-2 h-2 bg-gray-800 rounded-full shadow-lg;
-					transition: all 150ms ease-in-out;
+					@apply w-2 h-2 bg-gray-800 rounded-full shadow-lg transition duration-150;
 				}
 			}
 			&:hover {
@@ -57,15 +42,10 @@
 			@apply text-sm;
 		}
 		.fullScreenControls {
-			@apply w-5 h-5 flex justify-center items-center;
+			@apply flex justify-center items-center;
+
 			.fullScreenBtn {
-				@apply p-1 rounded-2xl;
-				min-width: 24px;
-				min-height: 24px;
-				transition: all 200ms ease-in-out;
-				&:hover {
-					@apply bg-gray-600 rounded-lg;
-				}
+				@apply p-1 rounded-lg transition duration-200 hover:bg-gray-600;
 			}
 		}
 	}

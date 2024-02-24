@@ -1,0 +1,19 @@
+.editForm {
+  @apply w-2/5 h-3/5 bg-primary rounded-md;
+
+  form {
+    @apply relative h-full p-7 pb-8;
+
+    input {
+      @apply w-full py-2 px-3.5 border-none outline-none bg-secondary placeholder:text-gray-400 rounded-lg;
+    }
+
+    textarea {
+      @apply w-full h-4/6 mt-[18px] p-2.5 bg-secondary placeholder:text-gray-400 border-none outline-none rounded-lg resize-none;
+    }
+
+    button {
+      @apply absolute right-7 bottom-7 py-1.5 px-5 bg-tertiary rounded-lg font-medium shadow transition duration-300 hover:bg-orange-500 active:bg-orange-600;
+    }
+  }
+}

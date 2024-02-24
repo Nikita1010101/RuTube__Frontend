@@ -1,9 +1,8 @@
-import { StaticImageData } from "next/image"
+import { LucideIcon } from 'lucide-react'
 
 export interface ISidebarRoutes {
-  id: string
-  route: string
+  id: number
+  link: string
   title: string
-  picture: StaticImageData
-  size: number
+  Icon: LucideIcon
 }

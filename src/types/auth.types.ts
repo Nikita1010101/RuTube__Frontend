@@ -8,7 +8,7 @@ export type TAuthData = {
 
 export type TEditBody = Pick<
   TUserInstance,
-  'avatarUrl' | 'description' | 'name'
+  'description' | 'name'
 >
 
 export type TLoginBody = Pick<TUserInstance, 'email' | 'password'>

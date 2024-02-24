@@ -3,7 +3,7 @@
 import { FC } from 'react'
 
 import styles from './Search-results.module.scss'
-import { Catalog } from '@/components/Layout/Catalog/Catalog'
+import { Catalog } from '@/components/shared/Catalog/Catalog'
 import { useTypedSelector } from '@/hooks/use-typed-selector'
 import { videoApi } from '@/store/video/video.api'
 

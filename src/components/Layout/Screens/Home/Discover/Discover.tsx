@@ -3,7 +3,7 @@
 import { FC } from 'react'
 import styles from './Discover.module.scss'
 
-import { DiscoverLoader } from '@/components/UI/Skeletons/DiscoverLoader/DiscoverLoader'
+import { DiscoverLoader } from '@/components/shared/Skeletons/DiscoverLoader/DiscoverLoader'
 import { DiscoverItem } from './Discover-item/Discover-item'
 import { IDiscover } from './Discover.interface'
 

@@ -9,25 +9,18 @@ import cn from 'classnames'
 import styles from './Menu-item.module.scss'
 import { ISidebarRoutes } from '../Sidebar.interface'
 
-export const MenuItem: FC<ISidebarRoutes> = ({ title, route, picture, size }) => {
+export const MenuItem: FC<ISidebarRoutes> = ({ Icon, title, link }) => {
   const pathname = usePathname()
 
   return (
-    <Link title={title} href={route}>
+    <Link title={title} href={link}>
       <div
         className={cn(styles.sidebarItem, {
-          [styles.active]: route === pathname,
+          [styles.active]: link === pathname,
         })}
       >
         <div>
-          <Image
-            src={picture}
-            width={size}
-            height={size}
-            alt={title}
-            style={{ minHeight: `${size}`, minWidth: `${size}` }}
-            quality={100}
-          />
+          <Icon size={18} strokeWidth={3} />
         </div>
         <h2>{title}</h2>
       </div>

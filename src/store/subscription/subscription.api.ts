@@ -21,10 +21,12 @@ export const subscriptionApi = videoApi.injectEndpoints({
 
     subscriptionCheck: builder.query<{ isSubscription: boolean }, number>({
       query: (channelId: number) => `/subscription/check/${channelId}`,
+      providesTags: ['SUBSCRIPTION']
     }),
 
     subscriptionGetLength: builder.query<{ length: number }, number>({
       query: (channelId: number) => `/subscription/length/${channelId}`,
+      providesTags: ['SUBSCRIPTION']
     }),
 
     subscriptionChange: builder.mutation<TUser, number>({
